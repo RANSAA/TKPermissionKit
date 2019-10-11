@@ -24,13 +24,17 @@
 
 
 
-    MPVolumeSettingsAlertHide();
-    [self get];
-    [self test];
+//    MPVolumeSettingsAlertHide();
+//    [self get];
+//    [self test];
+//
+//    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        [self get];
+//    }];
 
-    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        [self get];
-    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self testAlertVC];
+    });
 }
 
 - (void)test
@@ -68,6 +72,13 @@
         NSLog(@"data:%@",data);
     }];
     [task resume];
+}
+
+
+- (void)testAlertVC
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"权限提示" preferredStyle:UIAlertControllerStyleAlert];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];;
 }
 
 

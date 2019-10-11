@@ -26,7 +26,7 @@
 		<true/>
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>需要您的同意，才能访问媒体资料库</string>
+	<string>需要您的同意，才能访问媒体与Apple Music</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>需要您的同意，才能访问蓝牙</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -34,7 +34,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>需要您的同意，才能访问相机</string>
 	<key>NSContactsUsageDescription</key>
-	<string>需要您的同意，才能访问日历</string>
+	<string>需要您的同意，才能访问通讯录</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>需要您的同意，才能访问健康分享</string>
 	<key>NSHealthUpdateUsageDescription</key>
@@ -63,6 +63,11 @@
 	<string>需要您的同意，才能访问语音识别</string>
 	<key>NSVideoSubscriberAccountUsageDescription</key>
 	<string>需要您的同意，才能访问Siri</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

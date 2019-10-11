@@ -11,6 +11,20 @@
 		049796822330B3E60049B11C /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796812330B3E60049B11C /* HealthKitUI.framework */; };
 		049796852330C0880049B11C /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796842330C0880049B11C /* HomeKit.framework */; };
 		049796872330C8850049B11C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796862330C8850049B11C /* MapKit.framework */; };
+		04B5C549235010C800284691 /* TKPermissionPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C548235010C800284691 /* TKPermissionPhoto.m */; };
+		04B5C54D2350142B00284691 /* TKPermissionPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C54C2350142B00284691 /* TKPermissionPublic.m */; };
+		04B5C55023501FD500284691 /* TKPermissionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C54F23501FD500284691 /* TKPermissionCamera.m */; };
+		04B5C553235021D800284691 /* TKPermissionMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C552235021D800284691 /* TKPermissionMedia.m */; };
+		04B5C5562350283700284691 /* TKPermissionMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C5552350283700284691 /* TKPermissionMicrophone.m */; };
+		04B5C55A2350296500284691 /* TKPermissionLocationAlways.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C5592350296500284691 /* TKPermissionLocationAlways.m */; };
+		04B5C55D23504FA700284691 /* TKPermissionLocationWhen.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C55C23504FA700284691 /* TKPermissionLocationWhen.m */; };
+		04B5C5612350548900284691 /* TKPermissionBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C5602350548900284691 /* TKPermissionBluetooth.m */; };
+		04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C5632350694300284691 /* TKPermissionSpeech.m */; };
+		04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56823506E8F00284691 /* TKPermissionCalendar.m */; };
+		04B5C56D2350718E00284691 /* TKPermissionReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56C2350718E00284691 /* TKPermissionReminder.m */; };
+		04B5C5702350734C00284691 /* TKPermissionContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56F2350734C00284691 /* TKPermissionContact.m */; };
+		04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C572235077B900284691 /* TKPermissionNetWork.m */; };
+		04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C57623507EBF00284691 /* TKPermissionHealth.m */; };
 		04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB356230A4D9B00E86E38 /* AppDelegate.m */; };
 		04CDB35A230A4D9B00E86E38 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB359230A4D9B00E86E38 /* ViewController.m */; };
 		04CDB35D230A4D9B00E86E38 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB35B230A4D9B00E86E38 /* Main.storyboard */; };
@@ -27,6 +41,34 @@
 		049796832330B6340049B11C /* TKPermissionKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TKPermissionKitDemo.entitlements; sourceTree = "<group>"; };
 		049796842330C0880049B11C /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		049796862330C8850049B11C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		04B5C547235010C800284691 /* TKPermissionPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionPhoto.h; sourceTree = "<group>"; };
+		04B5C548235010C800284691 /* TKPermissionPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionPhoto.m; sourceTree = "<group>"; };
+		04B5C54B2350142B00284691 /* TKPermissionPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionPublic.h; sourceTree = "<group>"; };
+		04B5C54C2350142B00284691 /* TKPermissionPublic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionPublic.m; sourceTree = "<group>"; };
+		04B5C54E23501FD500284691 /* TKPermissionCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionCamera.h; sourceTree = "<group>"; };
+		04B5C54F23501FD500284691 /* TKPermissionCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionCamera.m; sourceTree = "<group>"; };
+		04B5C551235021D800284691 /* TKPermissionMedia.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionMedia.h; sourceTree = "<group>"; };
+		04B5C552235021D800284691 /* TKPermissionMedia.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionMedia.m; sourceTree = "<group>"; };
+		04B5C5542350283700284691 /* TKPermissionMicrophone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionMicrophone.h; sourceTree = "<group>"; };
+		04B5C5552350283700284691 /* TKPermissionMicrophone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionMicrophone.m; sourceTree = "<group>"; };
+		04B5C5582350296500284691 /* TKPermissionLocationAlways.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionLocationAlways.h; sourceTree = "<group>"; };
+		04B5C5592350296500284691 /* TKPermissionLocationAlways.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionLocationAlways.m; sourceTree = "<group>"; };
+		04B5C55B23504FA700284691 /* TKPermissionLocationWhen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionLocationWhen.h; sourceTree = "<group>"; };
+		04B5C55C23504FA700284691 /* TKPermissionLocationWhen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionLocationWhen.m; sourceTree = "<group>"; };
+		04B5C55F2350548900284691 /* TKPermissionBluetooth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionBluetooth.h; sourceTree = "<group>"; };
+		04B5C5602350548900284691 /* TKPermissionBluetooth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionBluetooth.m; sourceTree = "<group>"; };
+		04B5C5622350694300284691 /* TKPermissionSpeech.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionSpeech.h; sourceTree = "<group>"; };
+		04B5C5632350694300284691 /* TKPermissionSpeech.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionSpeech.m; sourceTree = "<group>"; };
+		04B5C56723506E8F00284691 /* TKPermissionCalendar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionCalendar.h; sourceTree = "<group>"; };
+		04B5C56823506E8F00284691 /* TKPermissionCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionCalendar.m; sourceTree = "<group>"; };
+		04B5C56B2350718E00284691 /* TKPermissionReminder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionReminder.h; sourceTree = "<group>"; };
+		04B5C56C2350718E00284691 /* TKPermissionReminder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionReminder.m; sourceTree = "<group>"; };
+		04B5C56E2350734C00284691 /* TKPermissionContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionContact.h; sourceTree = "<group>"; };
+		04B5C56F2350734C00284691 /* TKPermissionContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionContact.m; sourceTree = "<group>"; };
+		04B5C571235077B900284691 /* TKPermissionNetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionNetWork.h; sourceTree = "<group>"; };
+		04B5C572235077B900284691 /* TKPermissionNetWork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionNetWork.m; sourceTree = "<group>"; };
+		04B5C57523507EBF00284691 /* TKPermissionHealth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionHealth.h; sourceTree = "<group>"; };
+		04B5C57623507EBF00284691 /* TKPermissionHealth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionHealth.m; sourceTree = "<group>"; };
 		04CDB352230A4D9B00E86E38 /* TKPermissionKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TKPermissionKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CDB355230A4D9B00E86E38 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04CDB356230A4D9B00E86E38 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -69,6 +111,132 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		04B5C53E23500FD900284691 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C547235010C800284691 /* TKPermissionPhoto.h */,
+				04B5C548235010C800284691 /* TKPermissionPhoto.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		04B5C53F23500FE800284691 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C54E23501FD500284691 /* TKPermissionCamera.h */,
+				04B5C54F23501FD500284691 /* TKPermissionCamera.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		04B5C54023500FFD00284691 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C551235021D800284691 /* TKPermissionMedia.h */,
+				04B5C552235021D800284691 /* TKPermissionMedia.m */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		04B5C5412350100F00284691 /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C5542350283700284691 /* TKPermissionMicrophone.h */,
+				04B5C5552350283700284691 /* TKPermissionMicrophone.m */,
+			);
+			path = Microphone;
+			sourceTree = "<group>";
+		};
+		04B5C5422350102600284691 /* LocationWhen */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C55B23504FA700284691 /* TKPermissionLocationWhen.h */,
+				04B5C55C23504FA700284691 /* TKPermissionLocationWhen.m */,
+			);
+			path = LocationWhen;
+			sourceTree = "<group>";
+		};
+		04B5C5432350104600284691 /* Speech */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C5622350694300284691 /* TKPermissionSpeech.h */,
+				04B5C5632350694300284691 /* TKPermissionSpeech.m */,
+			);
+			path = Speech;
+			sourceTree = "<group>";
+		};
+		04B5C5442350105400284691 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C56723506E8F00284691 /* TKPermissionCalendar.h */,
+				04B5C56823506E8F00284691 /* TKPermissionCalendar.m */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		04B5C5452350105D00284691 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C56E2350734C00284691 /* TKPermissionContact.h */,
+				04B5C56F2350734C00284691 /* TKPermissionContact.m */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		04B5C5462350106600284691 /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C571235077B900284691 /* TKPermissionNetWork.h */,
+				04B5C572235077B900284691 /* TKPermissionNetWork.m */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		04B5C54A2350140500284691 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C54B2350142B00284691 /* TKPermissionPublic.h */,
+				04B5C54C2350142B00284691 /* TKPermissionPublic.m */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		04B5C5572350292500284691 /* LocationAlways */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C5582350296500284691 /* TKPermissionLocationAlways.h */,
+				04B5C5592350296500284691 /* TKPermissionLocationAlways.m */,
+			);
+			path = LocationAlways;
+			sourceTree = "<group>";
+		};
+		04B5C55E2350546600284691 /* Bluetooth */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C55F2350548900284691 /* TKPermissionBluetooth.h */,
+				04B5C5602350548900284691 /* TKPermissionBluetooth.m */,
+			);
+			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		04B5C56A2350716500284691 /* Reminder */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C56B2350718E00284691 /* TKPermissionReminder.h */,
+				04B5C56C2350718E00284691 /* TKPermissionReminder.m */,
+			);
+			path = Reminder;
+			sourceTree = "<group>";
+		};
+		04B5C57423507EA000284691 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				04B5C57523507EBF00284691 /* TKPermissionHealth.h */,
+				04B5C57623507EBF00284691 /* TKPermissionHealth.m */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
 		04CDB349230A4D9B00E86E38 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +277,20 @@
 		04CDB36B230A4DF300E86E38 /* TKPermissionKit */ = {
 			isa = PBXGroup;
 			children = (
+				04B5C57423507EA000284691 /* Health */,
+				04B5C55E2350546600284691 /* Bluetooth */,
+				04B5C5442350105400284691 /* Calendar */,
+				04B5C53F23500FE800284691 /* Camera */,
+				04B5C5452350105D00284691 /* Contact */,
+				04B5C5572350292500284691 /* LocationAlways */,
+				04B5C5422350102600284691 /* LocationWhen */,
+				04B5C54023500FFD00284691 /* Media */,
+				04B5C5412350100F00284691 /* Microphone */,
+				04B5C5462350106600284691 /* NetWork */,
+				04B5C53E23500FD900284691 /* Photo */,
+				04B5C54A2350140500284691 /* Public */,
+				04B5C56A2350716500284691 /* Reminder */,
+				04B5C5432350104600284691 /* Speech */,
 				04CDB36C230A4DF300E86E38 /* TKPermission.h */,
 				04CDB36D230A4DF300E86E38 /* TKPermission.m */,
 			);
@@ -147,11 +329,17 @@
 					04CDB351230A4D9B00E86E38 = {
 						CreatedOnToolsVersion = 10.2.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};
 							com.apple.HomeKit = {
 								enabled = 1;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
 							};
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -196,11 +384,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04B5C553235021D800284691 /* TKPermissionMedia.m in Sources */,
+				04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */,
+				04B5C55023501FD500284691 /* TKPermissionCamera.m in Sources */,
+				04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */,
+				04B5C5702350734C00284691 /* TKPermissionContact.m in Sources */,
+				04B5C54D2350142B00284691 /* TKPermissionPublic.m in Sources */,
+				04B5C549235010C800284691 /* TKPermissionPhoto.m in Sources */,
 				04CDB36E230A4DF300E86E38 /* TKPermission.m in Sources */,
+				04B5C55A2350296500284691 /* TKPermissionLocationAlways.m in Sources */,
+				04B5C5562350283700284691 /* TKPermissionMicrophone.m in Sources */,
 				04CDB35A230A4D9B00E86E38 /* ViewController.m in Sources */,
+				04B5C55D23504FA700284691 /* TKPermissionLocationWhen.m in Sources */,
 				04CDB374230A526600E86E38 /* ListViewController.m in Sources */,
+				04B5C5612350548900284691 /* TKPermissionBluetooth.m in Sources */,
+				04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */,
+				04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */,
 				04CDB365230A4D9C00E86E38 /* main.m in Sources */,
 				04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */,
+				04B5C56D2350718E00284691 /* TKPermissionReminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

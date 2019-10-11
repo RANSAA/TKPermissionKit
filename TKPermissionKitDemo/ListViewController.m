@@ -13,11 +13,30 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface ListViewController ()<UITableViewDelegate,UITableViewDataSource,CBCentralManagerDelegate>
+#import "TKPermissionPublic.h"
+#import "TKPermissionPhoto.h"
+#import "TKPermissionCamera.h"
+#import "TKPermissionMedia.h"
+#import "TKPermissionMicrophone.h"
+#import "TKPermissionLocationAlways.h"
+#import "TKPermissionLocationWhen.h"
+#import "TKPermissionBluetooth.h"
+#import "TKPermissionSpeech.h"
+#import "TKPermissionCalendar.h"
+#import "TKPermissionReminder.h"
+#import "TKPermissionContact.h"
+#import "TKPermissionNetWork.h"
+#import "TKPermissionHealth.h"
+
+
+
+
+
+
+@interface ListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (copy  , nonatomic) NSArray *aryType;
 @property (copy  , nonatomic) NSArray *aryTitle;
-@property (nonatomic, strong) CBCentralManager          *centralManager;  
 @end
 
 @implementation ListViewController
@@ -30,9 +49,41 @@
 
 //    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
 
-    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        [self get];
-    }];
+//    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//        [self get];
+//    }];
+
+    [self get];
+
+
+//    [TKPermissionNetWork authWithAlert:YES completion:^(BOOL isAuth) {
+//        if (isAuth) {
+//            NSLog(@"权限获取成功！");
+//        }else{
+//            NSLog(@"权限获取失败");
+//        }
+//    }];
+//
+//    if ([TKPermissionContact checkAuth]) {
+//        NSLog(@"查询到了权限");
+//    }else{
+//        NSLog(@"没有查询到权限");
+//    }
+
+//    [[TKPermissionHealth shared] authWithAlert:YES completion:^(BOOL isAuth) {
+//        if (isAuth) {
+//            NSLog(@"权限获取成功！");
+//        }else{
+//            NSLog(@"权限获取失败");
+//        }
+//    }];
+//
+//    if ([[TKPermissionHealth shared] checkAuth]) {
+//        NSLog(@"查询到了权限");
+//    }else{
+//        NSLog(@"没有查询到权限");
+//    }
+
 }
 
 - (void)instanceSubView
@@ -118,77 +169,19 @@
 
 
 
-/**
- *  --  初始化成功自动调用
- *  --  必须实现的代理，用来返回创建的centralManager的状态。
- *  --  注意：必须确认当前是CBCentralManagerStatePoweredOn状态才可以调用扫描外设的方法：
- scanForPeripheralsWithServices
- */
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central{
-    switch (central.state) {
-        case CBCentralManagerStateUnknown:
-            NSLog(@">>>CBCentralManagerStateUnknown");
-            break;
-        case CBCentralManagerStateResetting:
-            NSLog(@">>>CBCentralManagerStateResetting");
-            break;
-        case CBCentralManagerStateUnsupported:
-            NSLog(@">>>CBCentralManagerStateUnsupported");
-            break;
-        case CBCentralManagerStateUnauthorized:
-            NSLog(@">>>CBCentralManagerStateUnauthorized");
-            break;
-        case CBCentralManagerStatePoweredOff:
-            NSLog(@">>>CBCentralManagerStatePoweredOff");
-            break;
-        case CBCentralManagerStatePoweredOn:
-        {
-            NSLog(@">>>CBCentralManagerStatePoweredOn");
-            // 开始扫描周围的外设。
-            /*
-             -- 两个参数为Nil表示默认扫描所有可见蓝牙设备。
-             -- 注意：第一个参数是用来扫描有指定服务的外设。然后有些外设的服务是相同的，比如都有FFF5服务，那么都会发现；而有些外设的服务是不可见的，就会扫描不到设备。
-             -- 成功扫描到外设后调用didDiscoverPeripheral
-             */
-            [self.centralManager scanForPeripheralsWithServices:nil options:nil];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark 发现外设
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber *)RSSI{
-    NSLog(@"Find device:%@", [peripheral name]);
-//    if (![_deviceDic objectForKey:[peripheral name]]) {
-//        NSLog(@"Find device:%@", [peripheral name]);
-//        if (peripheral!=nil) {
-//            if ([peripheral name]!=nil) {
-//                if ([[peripheral name] hasPrefix:@"根据设备名过滤"]) {
-//                    [_deviceDic setObject:peripheral forKey:[peripheral name]];
-//                    // 停止扫描, 看需求决定要不要加
-//                    //                    [_centralManager stopScan];
-//                    // 将设备信息传到外面的页面(VC), 构成扫描到的设备列表
-//                    if ([self.delegate respondsToSelector:@selector(dataWithBluetoothDic:)]) {
-//                        [self.delegate dataWithBluetoothDic:_deviceDic];
-//                    }
-//                }
-//            }
-//        }
-//    }
-}
-
 
 - (void)get
 {
     NSURL *url = [NSURL URLWithString:@"http://www.cocoachina.com/cms/wap.php?action=article&id=24389"];
     NSURLSession *setion = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [setion dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"data:%@",data);
+        NSLog(@"data");
     }];
     [task resume];
 }
+
+
+
 
 /*
 #pragma mark - Navigation
