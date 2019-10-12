@@ -6,66 +6,28 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-Pod::Spec.new do |spec|
 
-  # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  These will help people to find your library, and whilst it
-  #  can feel like a chore to fill in it's definitely to your advantage. The
-  #  summary should be tweet-length, and the description more in depth.
-  #
+name = "TKPermissionKit"
+public_source_files  	= "TKPermissionKit/TKPermissionPublic.{h,m}"
+public_header_files     = "TKPermissionKit/TKPermissionPublic.h"
+
+
+Pod::Spec.new do |spec|
 
   spec.name         = "TKPermissionKit"		#框架名称
   spec.version      = "1.0"					#版本
   spec.summary      = "权限管理工具"          #简短的描述
-
-  # This description is used to generate tags and improve search results.
-  #   * Think: What does it do? Why did you write it? What is the focus?
-  #   * Try to keep it short, snappy and to the point.
-  #   * Write the description between the DESC delimiters below.
-  #   * Finally, don't worry about the indent, CocoaPods strips it!
-  #   详细的描述
   spec.description  = <<-DESC
   					需要什么，就导入什么模块，最好不要全部模块都导入！
                    DESC
-
   spec.homepage     = "https://github.com/RANSAA/TKPermissionKit"		#github项目首页
-  # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
-
-
-  # ―――  Spec License  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Licensing your code is important. See https://choosealicense.com for more info.
-  #  CocoaPods will detect a license file if there is a named LICENSE*
-  #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
-  #
-
   spec.license      = "MIT"			#开源协议方式
-  # spec.license      = { :type => "MIT", :file => "FILE_LICENSE" }
-
-
-  # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the authors of the library, with email addresses. Email addresses
-  #  of the authors are extracted from the SCM log. E.g. $ git log. CocoaPods also
-  #  accepts just a name if you'd rather not provide an email address.
-  #
-  #  Specify a social_media_url where others can refer to, for example a twitter
-  #  profile URL.
-  #
-
   spec.author             = { "sayaDev" => "1352892108@qq.com" }		#作者
-  # Or just: spec.author    = "mac"
-  # spec.authors            = { "mac" => "" }
-  # spec.social_media_url   = "https://twitter.com/mac"
+  spec.source       = { :git => "https://github.com/RANSAA/TKPermissionKit.git", :tag => "v#{spec.version}" }	#对应github资源与版本
+  spec.requires_arc = true		#支持arc
+  spec.frameworks = "Foundation", "UIKit"		#引入的系统框架
 
-  # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If this Pod runs only on iOS or OS X, then specify the platform and
-  #  the deployment target. You can optionally include the target after the platform.
-  #
-
-  # spec.platform     = :ios
+  #spec.platform     = :ios
   spec.platform     = :ios, "8.0"					#支持版本
 
   #  When using multiple platforms
@@ -75,68 +37,19 @@ Pod::Spec.new do |spec|
   # spec.tvos.deployment_target = "9.0"
 
 
-  # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Specify the location from where the source should be retrieved.
-  #  Supports git, hg, bzr, svn and HTTP.
-  #
-
-  spec.source       = { :git => "https://github.com/RANSAA/TKPermissionKit.git", :tag => "#{spec.version}" }	#对应github资源与版本
+  spec.source_files  		= public_source_files		#源文件路径相关
+  spec.public_header_files = public_header_files
 
 
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
-
-  spec.source_files  = "TKPermissionKit", "TKPermissionKit/*.{h,m}", "TKPermissionKit/**/*.{h,m}"		#源文件路径相关
-  #spec.exclude_files = "Classes/Exclude"					#二进制
-
-
-  spec.public_header_files = "TKPermissionKit/*.h"
-  # spec.public_header_files = "TKPermissionKit/Public/*.h"
+   #分支 
+  spec.subspec 'Photo' do |ss|
+   	ss.ios.deployment_target = "8.0"
+    ss.source_files = "TKPermissionKit/Photo/*.{h,m}",public_source_files
+    ss.public_header_files = "TKPermissionKit/Photo/*.h",public_header_files
+    ss.ios.frameworks = "Photos"
+  end
 
 
 
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # spec.resource  = "icon.png"
-  # spec.resources = "Resources/*.png"
-
-  # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # spec.framework  = "SomeFramework"
-  spec.frameworks = "Foundation", "UIKit"		#引入的系统框架
-
-  # spec.library   = "iconv"
-  # spec.libraries = "iconv", "xml2"
-
-
-  # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  If your library depends on compiler flags you can set them in the xcconfig hash
-  #  where they will only apply to your library. If you depend on other Podspecs
-  #  you can include multiple dependencies to ensure it works.
-
-  spec.requires_arc = true		#支持arc
-
-  # spec.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # spec.dependency "JSONKit", "~> 1.4"
 
 end
