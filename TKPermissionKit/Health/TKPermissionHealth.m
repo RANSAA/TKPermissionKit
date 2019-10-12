@@ -33,7 +33,12 @@
 - (void)jumpSetting
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:@"权限提示" msg:@"访问HealthKit时需要您提供权限，请设置！"];
+        NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+        if (!name) {
+            name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+        }
+        NSString *msg = [NSString stringWithFormat:@"访问HealthKit时需要您提供权限，请打开应用\"健康\"，选择\"数据来源\"，点击进入\"%@\"，选择\"打开所有类别\"",name];
+        [TKPermissionPublic alertActionTitle:@"权限提示" msg:msg];
     });
 }
 

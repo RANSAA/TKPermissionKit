@@ -19,7 +19,7 @@
  注意：⚠️⚠️⚠️这个和第一次启动APP出现的授权管理不同，APP网络授权需要另想他法
  ⚠️⚠️⚠️completion:也不会有回调,只是用来做一个执行函数，即isAlert与completion没有作用
  **/
-+ (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
++ (void)authWithAlert:(BOOL)isAlert completion:(nullable void(^)(BOOL isAuth))completion
 {
     if (@available(iOS 9.0, *)) {
         CTCellularData *cellularData = [[CTCellularData alloc]init];

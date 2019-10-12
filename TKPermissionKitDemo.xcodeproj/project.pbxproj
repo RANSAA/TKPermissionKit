@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044B6D7323516B9B00F13358 /* TKPermissionHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D7223516B9B00F13358 /* TKPermissionHome.m */; };
+		044B6D772351724600F13358 /* TKPermissionMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D762351724600F13358 /* TKPermissionMotion.m */; };
+		044B6D7C2351981400F13358 /* TKPermissionNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D7B2351981400F13358 /* TKPermissionNotification.m */; };
 		049796802330846A0049B11C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0497967F233084690049B11C /* HealthKit.framework */; };
 		049796822330B3E60049B11C /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796812330B3E60049B11C /* HealthKitUI.framework */; };
 		049796852330C0880049B11C /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796842330C0880049B11C /* HomeKit.framework */; };
@@ -22,7 +25,7 @@
 		04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C5632350694300284691 /* TKPermissionSpeech.m */; };
 		04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56823506E8F00284691 /* TKPermissionCalendar.m */; };
 		04B5C56D2350718E00284691 /* TKPermissionReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56C2350718E00284691 /* TKPermissionReminder.m */; };
-		04B5C5702350734C00284691 /* TKPermissionContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56F2350734C00284691 /* TKPermissionContact.m */; };
+		04B5C5702350734C00284691 /* TKPermissionContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56F2350734C00284691 /* TKPermissionContacts.m */; };
 		04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C572235077B900284691 /* TKPermissionNetWork.m */; };
 		04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C57623507EBF00284691 /* TKPermissionHealth.m */; };
 		04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB356230A4D9B00E86E38 /* AppDelegate.m */; };
@@ -31,11 +34,17 @@
 		04CDB35F230A4D9C00E86E38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB35E230A4D9C00E86E38 /* Assets.xcassets */; };
 		04CDB362230A4D9C00E86E38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB360230A4D9C00E86E38 /* LaunchScreen.storyboard */; };
 		04CDB365230A4D9C00E86E38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB364230A4D9C00E86E38 /* main.m */; };
-		04CDB36E230A4DF300E86E38 /* TKPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB36D230A4DF300E86E38 /* TKPermission.m */; };
 		04CDB374230A526600E86E38 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB373230A526600E86E38 /* ListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044B6D7123516B9B00F13358 /* TKPermissionHome.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionHome.h; sourceTree = "<group>"; };
+		044B6D7223516B9B00F13358 /* TKPermissionHome.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionHome.m; sourceTree = "<group>"; };
+		044B6D752351724600F13358 /* TKPermissionMotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionMotion.h; sourceTree = "<group>"; };
+		044B6D762351724600F13358 /* TKPermissionMotion.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionMotion.m; sourceTree = "<group>"; };
+		044B6D7A2351981400F13358 /* TKPermissionNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionNotification.h; sourceTree = "<group>"; };
+		044B6D7B2351981400F13358 /* TKPermissionNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionNotification.m; sourceTree = "<group>"; };
+		044B6D7D2351A18200F13358 /* TKPermissionKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPermissionKit.h; sourceTree = "<group>"; };
 		0497967F233084690049B11C /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		049796812330B3E60049B11C /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		049796832330B6340049B11C /* TKPermissionKitDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TKPermissionKitDemo.entitlements; sourceTree = "<group>"; };
@@ -63,8 +72,8 @@
 		04B5C56823506E8F00284691 /* TKPermissionCalendar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionCalendar.m; sourceTree = "<group>"; };
 		04B5C56B2350718E00284691 /* TKPermissionReminder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionReminder.h; sourceTree = "<group>"; };
 		04B5C56C2350718E00284691 /* TKPermissionReminder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionReminder.m; sourceTree = "<group>"; };
-		04B5C56E2350734C00284691 /* TKPermissionContact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionContact.h; sourceTree = "<group>"; };
-		04B5C56F2350734C00284691 /* TKPermissionContact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionContact.m; sourceTree = "<group>"; };
+		04B5C56E2350734C00284691 /* TKPermissionContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionContacts.h; sourceTree = "<group>"; };
+		04B5C56F2350734C00284691 /* TKPermissionContacts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionContacts.m; sourceTree = "<group>"; };
 		04B5C571235077B900284691 /* TKPermissionNetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionNetWork.h; sourceTree = "<group>"; };
 		04B5C572235077B900284691 /* TKPermissionNetWork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionNetWork.m; sourceTree = "<group>"; };
 		04B5C57523507EBF00284691 /* TKPermissionHealth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionHealth.h; sourceTree = "<group>"; };
@@ -79,8 +88,6 @@
 		04CDB361230A4D9C00E86E38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04CDB363230A4D9C00E86E38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04CDB364230A4D9C00E86E38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		04CDB36C230A4DF300E86E38 /* TKPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKPermission.h; sourceTree = "<group>"; };
-		04CDB36D230A4DF300E86E38 /* TKPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKPermission.m; sourceTree = "<group>"; };
 		04CDB372230A526600E86E38 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		04CDB373230A526600E86E38 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +107,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		044B6D7023516B6C00F13358 /* HomeKit */ = {
+			isa = PBXGroup;
+			children = (
+				044B6D7123516B9B00F13358 /* TKPermissionHome.h */,
+				044B6D7223516B9B00F13358 /* TKPermissionHome.m */,
+			);
+			path = HomeKit;
+			sourceTree = "<group>";
+		};
+		044B6D742351722F00F13358 /* Motion */ = {
+			isa = PBXGroup;
+			children = (
+				044B6D752351724600F13358 /* TKPermissionMotion.h */,
+				044B6D762351724600F13358 /* TKPermissionMotion.m */,
+			);
+			path = Motion;
+			sourceTree = "<group>";
+		};
+		044B6D79235197E900F13358 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				044B6D7A2351981400F13358 /* TKPermissionNotification.h */,
+				044B6D7B2351981400F13358 /* TKPermissionNotification.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		0497967E233084690049B11C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,13 +208,13 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		04B5C5452350105D00284691 /* Contact */ = {
+		04B5C5452350105D00284691 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				04B5C56E2350734C00284691 /* TKPermissionContact.h */,
-				04B5C56F2350734C00284691 /* TKPermissionContact.m */,
+				04B5C56E2350734C00284691 /* TKPermissionContacts.h */,
+				04B5C56F2350734C00284691 /* TKPermissionContacts.m */,
 			);
-			path = Contact;
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		04B5C5462350106600284691 /* NetWork */ = {
@@ -277,22 +311,24 @@
 		04CDB36B230A4DF300E86E38 /* TKPermissionKit */ = {
 			isa = PBXGroup;
 			children = (
-				04B5C57423507EA000284691 /* Health */,
 				04B5C55E2350546600284691 /* Bluetooth */,
 				04B5C5442350105400284691 /* Calendar */,
 				04B5C53F23500FE800284691 /* Camera */,
-				04B5C5452350105D00284691 /* Contact */,
+				04B5C5452350105D00284691 /* Contacts */,
+				04B5C57423507EA000284691 /* Health */,
+				044B6D7023516B6C00F13358 /* HomeKit */,
 				04B5C5572350292500284691 /* LocationAlways */,
 				04B5C5422350102600284691 /* LocationWhen */,
 				04B5C54023500FFD00284691 /* Media */,
 				04B5C5412350100F00284691 /* Microphone */,
+				044B6D742351722F00F13358 /* Motion */,
 				04B5C5462350106600284691 /* NetWork */,
+				044B6D79235197E900F13358 /* Notification */,
 				04B5C53E23500FD900284691 /* Photo */,
 				04B5C54A2350140500284691 /* Public */,
 				04B5C56A2350716500284691 /* Reminder */,
 				04B5C5432350104600284691 /* Speech */,
-				04CDB36C230A4DF300E86E38 /* TKPermission.h */,
-				04CDB36D230A4DF300E86E38 /* TKPermission.m */,
+				044B6D7D2351A18200F13358 /* TKPermissionKit.h */,
 			);
 			path = TKPermissionKit;
 			sourceTree = SOURCE_ROOT;
@@ -385,13 +421,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B5C553235021D800284691 /* TKPermissionMedia.m in Sources */,
+				044B6D772351724600F13358 /* TKPermissionMotion.m in Sources */,
+				044B6D7323516B9B00F13358 /* TKPermissionHome.m in Sources */,
 				04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */,
 				04B5C55023501FD500284691 /* TKPermissionCamera.m in Sources */,
 				04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */,
-				04B5C5702350734C00284691 /* TKPermissionContact.m in Sources */,
+				04B5C5702350734C00284691 /* TKPermissionContacts.m in Sources */,
 				04B5C54D2350142B00284691 /* TKPermissionPublic.m in Sources */,
+				044B6D7C2351981400F13358 /* TKPermissionNotification.m in Sources */,
 				04B5C549235010C800284691 /* TKPermissionPhoto.m in Sources */,
-				04CDB36E230A4DF300E86E38 /* TKPermission.m in Sources */,
 				04B5C55A2350296500284691 /* TKPermissionLocationAlways.m in Sources */,
 				04B5C5562350283700284691 /* TKPermissionMicrophone.m in Sources */,
 				04CDB35A230A4D9B00E86E38 /* ViewController.m in Sources */,

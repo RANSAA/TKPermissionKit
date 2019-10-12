@@ -1,17 +1,17 @@
 //
-//  TKPermissionContact.m
+//  TKPermissionContacts.m
 //  TKPermissionKitDemo
 //
 //  Created by mac on 2019/10/11.
 //  Copyright © 2019 mac. All rights reserved.
 //
 
-#import "TKPermissionContact.h"
+#import "TKPermissionContacts.h"
 #import "TKPermissionPublic.h"
 #import <Contacts/Contacts.h>
 #import <AddressBook/AddressBook.h>
 
-@implementation TKPermissionContact
+@implementation TKPermissionContacts
 
 + (void)jumpSetting
 {

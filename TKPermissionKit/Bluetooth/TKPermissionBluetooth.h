@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
      它们分别是：
              1. Uses Bluetooth LE accessories
              2. Acts as a Bluetooth LE accessory
+ ⚠️⚠️⚠️iOS13.0+ 有新的权限获取方式
 
 
  权限描述:

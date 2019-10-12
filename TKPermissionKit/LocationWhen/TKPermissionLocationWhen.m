@@ -49,9 +49,11 @@
 - (BOOL)checkAuth
 {
     BOOL isAuth = NO;
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        isAuth = YES;
+    if ([CLLocationManager locationServicesEnabled]) {
+        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+        if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            isAuth = YES;
+        }
     }
     return isAuth;
 }

@@ -1,5 +1,5 @@
 //
-//  TKPermissionContact.h
+//  TKPermissionContacts.h
 //  TKPermissionKitDemo
 //
 //  Created by mac on 2019/10/11.
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  **/
 
-@interface TKPermissionContact : NSObject
+@interface TKPermissionContacts : NSObject
 
 /**
  请求通讯录权限

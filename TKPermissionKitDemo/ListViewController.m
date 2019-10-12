@@ -7,36 +7,14 @@
 //
 
 #import "ListViewController.h"
-#import "TKPermission.h"
-#import <CoreTelephony/CTCellularData.h>
-#import <CoreLocation/CoreLocation.h>
-#import <MediaPlayer/MediaPlayer.h>
-#import <CoreBluetooth/CoreBluetooth.h>
-
-#import "TKPermissionPublic.h"
-#import "TKPermissionPhoto.h"
-#import "TKPermissionCamera.h"
-#import "TKPermissionMedia.h"
-#import "TKPermissionMicrophone.h"
-#import "TKPermissionLocationAlways.h"
-#import "TKPermissionLocationWhen.h"
-#import "TKPermissionBluetooth.h"
-#import "TKPermissionSpeech.h"
-#import "TKPermissionCalendar.h"
-#import "TKPermissionReminder.h"
-#import "TKPermissionContact.h"
-#import "TKPermissionNetWork.h"
-#import "TKPermissionHealth.h"
-
-
-
+#import "TKPermissionKit.h"
 
 
 
 @interface ListViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (copy  , nonatomic) NSArray *aryType;
 @property (copy  , nonatomic) NSArray *aryTitle;
+
 @end
 
 @implementation ListViewController
@@ -47,42 +25,8 @@
     [self instanceSubView];
 
 
-//    self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-
-//    [NSTimer scheduledTimerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
-//        [self get];
-//    }];
-
     [self get];
 
-
-//    [TKPermissionNetWork authWithAlert:YES completion:^(BOOL isAuth) {
-//        if (isAuth) {
-//            NSLog(@"权限获取成功！");
-//        }else{
-//            NSLog(@"权限获取失败");
-//        }
-//    }];
-//
-//    if ([TKPermissionContact checkAuth]) {
-//        NSLog(@"查询到了权限");
-//    }else{
-//        NSLog(@"没有查询到权限");
-//    }
-
-//    [[TKPermissionHealth shared] authWithAlert:YES completion:^(BOOL isAuth) {
-//        if (isAuth) {
-//            NSLog(@"权限获取成功！");
-//        }else{
-//            NSLog(@"权限获取失败");
-//        }
-//    }];
-//
-//    if ([[TKPermissionHealth shared] checkAuth]) {
-//        NSLog(@"查询到了权限");
-//    }else{
-//        NSLog(@"没有查询到权限");
-//    }
 
 }
 
@@ -91,6 +35,7 @@
     self.aryTitle= @[@"打开相册权限",
                      @"打开相机权限",
                      @"打开媒体资料库权限",
+                     @"打开蓝牙权限",
                      @"打开麦克风权限",
                      @"打开位置权限-使用期间",
                      @"打开位置权限-始终使用",
@@ -104,23 +49,6 @@
                      @"打开运动与健身权限",
                      @"打开HomeKit权限"
                      ];
-    self.aryType = @[@(PermissionAuthTypePhoto),
-                     @(PermissionAuthTypeCamera),
-                     @(PermissionAuthTypeMedia),
-                     @(PermissionAuthTypeMicrophone),
-                     @(PrivacyPermissionTypeLocationWhen),
-                     @(PrivacyPermissionTypeLocationAlways),
-                     @(PermissionAuthTypePushNotification),
-                     @(PermissionAuthTypeSpeech),
-                     @(PermissionAuthTypeCalendar),
-                     @(PermissionAuthTypeContact),
-                     @(PermissionAuthTypeReminder),
-                     @(PermissionAuthTypeNetWork),
-                     @(PermissionAuthTypeHealth),
-                     @(PermissionAuthTypeSportsAndFitness),
-                     @(PermissionAuthTypeHomeKit)
-                     ];
-
     self.tableView.rowHeight = 55;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.dataSource = self;
@@ -129,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.aryType.count;
+    return self.aryTitle.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -141,29 +69,186 @@
     return cell;
 }
 
-- (void)tableView1:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger row = indexPath.row;
-    NSNumber *number = self.aryType[row];
-//    PrivacyPermissionType type = number.integerValue;
-//    [[TKPermission shared] authorizeWithType:type completion:^(BOOL response, PrivacyPermissionAuthorizationStatus status) {
-//        NSLog(@"认证状态:%ld",status);
-//    }];
-
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row;
-    NSNumber *number = self.aryType[row];
-    PermissionAuthType type = number.integerValue;
-    [[TKPermission shared] authPermissionWithType:type completion:^(BOOL isAuth) {
-        if (isAuth) {
-            NSLog(@"权限获取成功！");
-        }else{
-            NSLog(@"权限获取失败！");
+    switch (row) {
+        case 0:
+        {
+            [TKPermissionPhoto authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"相册权限获取成功！");
+                }else{
+                    NSLog(@"相册权限获取失败");
+                }
+            }];
         }
-    }];
+            break;
+        case 1:
+        {
+            [TKPermissionCamera authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"照相机权限获取成功！");
+                }else{
+                    NSLog(@"照相机权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 2:
+        {
+            [TKPermissionMedia authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"媒体资料库权权限获取成功！");
+                }else{
+                    NSLog(@"媒体资料库权权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 3:
+        {
+            [[TKPermissionBluetooth shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"蓝牙权限获取成功！");
+                }else{
+                    NSLog(@"蓝牙权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 4:
+        {
+            [TKPermissionMicrophone authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"麦克风权限获取成功！");
+                }else{
+                    NSLog(@"麦克风权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 5:
+        {
+            [[TKPermissionLocationWhen shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"使用应用期间权限获取成功！");
+                }else{
+                    NSLog(@"使用应用期间权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 6:
+        {
+            [[TKPermissionLocationAlways shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"定位始终访问权限获取成功！");
+                }else{
+                    NSLog(@"定位始终访问权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 7://推送
+        {
+            [TKPermissionNotification authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"推送通知权限获取成功！");
+                }else{
+                    NSLog(@"推送通知权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 8:
+        {
+            [TKPermissionSpeech authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"语音识别权限获取成功！");
+                }else{
+                    NSLog(@"语音识别权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 9:
+        {
+            [TKPermissionCalendar authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"日历权限获取成功！");
+                }else{
+                    NSLog(@"日历权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 10:
+        {
+            [TKPermissionContacts authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"通讯录权限获取成功！");
+                }else{
+                    NSLog(@"通讯录权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 11:
+        {
+            [TKPermissionReminder authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"提醒事项权限获取成功！");
+                }else{
+                    NSLog(@"提醒事项权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 12://移动网络
+        {
+            [TKPermissionNetWork authWithAlert:YES completion:nil];
+            NSLog(@"移动网络。。。");
+        }
+            break;
+
+        case 13:
+        {
+            [[TKPermissionHealth shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"HealthKit权限获取成功！");
+                }else{
+                    NSLog(@"HealthKit权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 14:
+        {
+            [[TKPermissionMotion shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"运动与健身权限获取成功！");
+                }else{
+                    NSLog(@"运动与健身权限获取失败");
+                }
+            }];
+        }
+            break;
+        case 15:
+        {
+            [[TKPermissionHome shared] authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"HomeKit权限获取成功！");
+                }else{
+                    NSLog(@"HomeKit权限获取失败");
+                }
+            }];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 

@@ -50,9 +50,11 @@
 - (BOOL)checkAuth
 {
     BOOL isAuth = NO;
-    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-    if (status == kCLAuthorizationStatusAuthorizedAlways) {
-        isAuth = YES;
+    if ([CLLocationManager locationServicesEnabled]) {
+        CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+        if (status == kCLAuthorizationStatusAuthorizedAlways) {
+            isAuth = YES;
+        }
     }
     return isAuth;
 }
@@ -81,10 +83,7 @@
  **/
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    NSLog(@"staus:%d",status);
-    BOOL isAuth = NO;
     if (status == kCLAuthorizationStatusAuthorizedAlways) {
-        isAuth = YES;
         self.block(YES);
     }else{
         if (self.isAlert && (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusAuthorizedWhenInUse)) {
@@ -92,7 +91,6 @@
         }
         self.block(NO);
     }
-
 }
 
 
