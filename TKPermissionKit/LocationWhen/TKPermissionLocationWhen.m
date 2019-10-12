@@ -82,9 +82,7 @@
  **/
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    BOOL isAuth = NO;
     if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        isAuth = YES;
         self.block(YES);
     }else{
         if (self.isAlert && status == kCLAuthorizationStatusDenied) {

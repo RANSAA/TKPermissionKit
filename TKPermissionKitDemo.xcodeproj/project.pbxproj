@@ -10,10 +10,6 @@
 		044B6D7323516B9B00F13358 /* TKPermissionHome.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D7223516B9B00F13358 /* TKPermissionHome.m */; };
 		044B6D772351724600F13358 /* TKPermissionMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D762351724600F13358 /* TKPermissionMotion.m */; };
 		044B6D7C2351981400F13358 /* TKPermissionNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 044B6D7B2351981400F13358 /* TKPermissionNotification.m */; };
-		049796802330846A0049B11C /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0497967F233084690049B11C /* HealthKit.framework */; };
-		049796822330B3E60049B11C /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796812330B3E60049B11C /* HealthKitUI.framework */; };
-		049796852330C0880049B11C /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796842330C0880049B11C /* HomeKit.framework */; };
-		049796872330C8850049B11C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796862330C8850049B11C /* MapKit.framework */; };
 		04B5C549235010C800284691 /* TKPermissionPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C548235010C800284691 /* TKPermissionPhoto.m */; };
 		04B5C54D2350142B00284691 /* TKPermissionPublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C54C2350142B00284691 /* TKPermissionPublic.m */; };
 		04B5C55023501FD500284691 /* TKPermissionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C54F23501FD500284691 /* TKPermissionCamera.m */; };
@@ -97,23 +93,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049796852330C0880049B11C /* HomeKit.framework in Frameworks */,
-				049796822330B3E60049B11C /* HealthKitUI.framework in Frameworks */,
-				049796872330C8850049B11C /* MapKit.framework in Frameworks */,
-				049796802330846A0049B11C /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		044B6D7023516B6C00F13358 /* HomeKit */ = {
+		044B6D7023516B6C00F13358 /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				044B6D7123516B9B00F13358 /* TKPermissionHome.h */,
 				044B6D7223516B9B00F13358 /* TKPermissionHome.m */,
 			);
-			path = HomeKit;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		044B6D742351722F00F13358 /* Motion */ = {
@@ -316,7 +308,7 @@
 				04B5C53F23500FE800284691 /* Camera */,
 				04B5C5452350105D00284691 /* Contacts */,
 				04B5C57423507EA000284691 /* Health */,
-				044B6D7023516B6C00F13358 /* HomeKit */,
+				044B6D7023516B6C00F13358 /* Home */,
 				04B5C5572350292500284691 /* LocationAlways */,
 				04B5C5422350102600284691 /* LocationWhen */,
 				04B5C54023500FFD00284691 /* Media */,
