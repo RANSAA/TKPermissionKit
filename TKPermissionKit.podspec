@@ -8,8 +8,10 @@
 
 
 name = "TKPermissionKit"
-public_source_files  	= "TKPermissionKit/TKPermissionPublic.{h,m}"
-public_header_files     = "TKPermissionKit/TKPermissionPublic.h"
+file_source     = "*.{h,m}"
+file_header     = "*.h"
+public_source     = "TKPermissionKit/Public/TKPermissionPublic.{h,m}"
+public_header     = "TKPermissionKit/Public/TKPermissionPublic.h"
 
 
 Pod::Spec.new do |spec|
@@ -25,9 +27,8 @@ Pod::Spec.new do |spec|
   spec.author             = { "sayaDev" => "1352892108@qq.com" }		#作者
   spec.source       = { :git => "https://github.com/RANSAA/TKPermissionKit.git", :tag => "v#{spec.version}" }	#对应github资源与版本
   spec.requires_arc = true		#支持arc
-  spec.frameworks = "Foundation", "UIKit"		#引入的系统框架
 
-  #spec.platform     = :ios
+  # spec.platform     = :ios
   spec.platform     = :ios, "8.0"					#支持版本
 
   #  When using multiple platforms
@@ -37,18 +38,140 @@ Pod::Spec.new do |spec|
   # spec.tvos.deployment_target = "9.0"
 
 
-  spec.source_files  		= public_source_files		#源文件路径相关
-  spec.public_header_files = public_header_files
+  # spec.source_files  		= public_source,"#{name}/*.*","#{name}/**/*.*"	#源文件路径相关
+  # spec.public_header_files = public_header,"#{name}/*.h","#{name}/**/*.h"
+
+  spec.source_files         = "#{name}/*.*","#{name}/**/*.*"  #源文件路径相关
+  spec.public_header_files  = "#{name}/*.h","#{name}/**/*.h"
+  spec.frameworks = "Foundation", "UIKit" ,"Photos", "AVFoundation", "MediaPlayer", "CoreBluetooth", "CoreLocation", "UserNotifications", "Speech", "Contacts", "EventKit", "CoreTelephony", "CoreMotion", "HomeKit", "HealthKit" , "AddressBook"                       #引入的系统框架
 
 
-   #分支 
+
+
+  #分支 
   spec.subspec 'Photo' do |ss|
    	ss.ios.deployment_target = "8.0"
-    ss.source_files = "TKPermissionKit/Photo/*.{h,m}",public_source_files
-    ss.public_header_files = "TKPermissionKit/Photo/*.h",public_header_files
-    ss.ios.frameworks = "Photos"
+    ss.source_files         = "#{name}/Photo/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Photo/#{file_header}",public_header
+    ss.ios.frameworks       = "Photos"
   end
 
+ 
+  spec.subspec 'Camera' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Camera/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Camera/#{file_header}",public_header
+    ss.ios.frameworks       = "AVFoundation"
+  end
+
+
+  spec.subspec 'Media' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Media/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Media/#{file_header}",public_header
+    ss.ios.frameworks       = "MediaPlayer"
+  end
+
+
+  spec.subspec 'Bluetooth' do |ss|
+    ss.ios.deployment_target = "7.0"
+    ss.source_files         = "#{name}/Bluetooth/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Bluetooth/#{file_header}",public_header
+    ss.ios.frameworks       = "CoreBluetooth"
+  end
+
+
+  spec.subspec 'Microphone' do |ss|
+    ss.ios.deployment_target = "7.0"
+    ss.source_files         = "#{name}/Microphone/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Microphone/#{file_header}",public_header
+    ss.ios.frameworks       = "AVFoundation"
+  end
+
+
+  spec.subspec 'LocationWhen' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/LocationWhen/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/LocationWhen/#{file_header}",public_header
+    ss.ios.frameworks       = "CoreLocation"
+  end
+
+
+  spec.subspec 'LocationAlways' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/LocationAlways/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/LocationAlways/#{file_header}",public_header
+    ss.ios.frameworks       = "CoreLocation"
+  end
+
+
+  spec.subspec 'Notification' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Notification/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Notification/#{file_header}",public_header
+    ss.ios.frameworks       = "UserNotifications"
+  end
+
+
+
+  spec.subspec 'Speech' do |ss|
+    # ss.ios.deployment_target = "10.0"
+    ss.source_files         = "#{name}/Speech/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Speech/#{file_header}",public_header
+    ss.ios.frameworks       = "Speech"
+  end
+
+
+  spec.subspec 'Contacts' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Contacts/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Contacts/#{file_header}",public_header
+    ss.ios.frameworks       = "Contacts","AddressBook"
+  end
+
+
+  spec.subspec 'Calendar' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Calendar/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Calendar/#{file_header}",public_header
+    ss.ios.frameworks       = "EventKit"
+  end
+
+
+  spec.subspec 'Reminder' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Reminder/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Reminder/#{file_header}",public_header
+    ss.ios.frameworks       = "EventKit"
+  end
+
+  spec.subspec 'NetWork' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/NetWork/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/NetWork/#{file_header}",public_header
+    ss.ios.frameworks       = "CoreTelephony"
+  end
+
+  spec.subspec 'Motion' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Motion/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Motion/#{file_header}",public_header
+    ss.ios.frameworks       = "CoreMotion"
+  end
+
+  spec.subspec 'Home' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Home/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Home/#{file_header}",public_header
+    ss.ios.frameworks       = "HomeKit"
+  end
+
+  spec.subspec 'Health' do |ss|
+    ss.ios.deployment_target = "8.0"
+    ss.source_files         = "#{name}/Health/#{file_source}",public_source
+    ss.public_header_files  = "#{name}/Health/#{file_header}",public_header
+    ss.ios.frameworks       = "HealthKit"
+  end
 
 
 

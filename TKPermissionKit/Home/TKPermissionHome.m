@@ -66,14 +66,12 @@
     } else {
         __weak HMHomeManager *weakHomeManager = manager;
         [manager addHomeWithName:@"Test Home" completionHandler:^(HMHome * _Nullable home, NSError * _Nullable error) {
-            NSLog(@"error:%@    home:%@",error,home);
             if (!error) {
                 self.block(YES);
                 self.homeManager.delegate = nil;
             } else {
                 // tips：出现错误，错误类型参考 HMError.h
                 if (error.code == HMErrorCodeHomeAccessNotAuthorized) {
-                    NSLog(@"TKPermission:HomeKit 用户拒绝!!");
                     if (self.isAlert) {
                         [self jumpSetting];
                     }
@@ -81,7 +79,6 @@
                     self.homeManager.delegate = nil;
                     return ;
                 } else {
-                    NSLog(@"TKPermission:HomeKit HOME_ERROR:%ld,%@",error.code, error.localizedDescription);
                     self.block(YES);
                     self.homeManager.delegate = nil;
                 }

@@ -8,7 +8,6 @@
 
 #import "TKPermissionNotification.h"
 #import "TKPermissionPublic.h"
-#import <UIKit/UIKit.h>
 #import <UserNotifications/UserNotifications.h>
 
 
