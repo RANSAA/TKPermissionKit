@@ -6,7 +6,6 @@
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-
 name = "TKPermissionKit"
 file_source       = "*.{h,m}"
 file_header       = "*.h"
@@ -45,6 +44,7 @@ Pod::Spec.new do |spec|
   spec.public_header_files  = "#{name}/TKPermissionKit.h"
 
   
+
 
   #分支 
   spec.subspec 'Public' do |ss|
