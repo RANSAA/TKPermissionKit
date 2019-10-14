@@ -24,7 +24,8 @@ TKPermissionKitDemo权限获取
 
 #### 引用方式
 引入所有的功能模块：
-pod 'TKPermissionKit'
+
+  pod 'TKPermissionKit'
 
 
 不推荐直接引用所以功能模块，除非你的项目中用到了所有的模块，否则建议你按需求引入具体权限请求模块，它们分别为：
