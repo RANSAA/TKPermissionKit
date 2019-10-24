@@ -1,7 +1,7 @@
-# TKPermissionKitDemo
+# TKPermissionKit
 
 #### 介绍
-TKPermissionKitDemo权限获取
+TKPermissionKit应用权限获取
 
 
 #### 权限支持
