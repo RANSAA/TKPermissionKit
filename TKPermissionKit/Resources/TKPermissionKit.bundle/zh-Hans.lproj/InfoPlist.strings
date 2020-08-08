@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  TKPermissionKitDemo
+
+  Created by PC on 2020/8/8.
+  Copyright © 2020 mac. All rights reserved.
+*/
+
+"确定" = "确定";
+"取消" = "取消";
+"完成" = "完成";
+"好" = "好";
+"设置" = "设置";
+"允许" = "允许";
+"不允许" = "不允许";
+"知道了" = "知道了";
+"权限提示" = "权限提示";
+"提示" = "提示";

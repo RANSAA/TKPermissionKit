@@ -15,7 +15,7 @@
 + (void)jumpSetting
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:@"权限提示" msg:@"访问麦克风时需要您提供权限，请设置!"];
+        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:@"访问麦克风时需要您提供权限，请设置!"];
     });
 }
 

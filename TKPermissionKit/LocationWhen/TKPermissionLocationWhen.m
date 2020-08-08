@@ -32,14 +32,14 @@
 - (void)jumpSetting
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:@"权限提示" msg:@"访问位置时需要您提供权限，请设置!"];
+        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:@"访问位置时需要您提供权限，请设置!"];
     });
 }
 
 - (void)alertAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:@"提示" msg:@"请先开启定位服务！"];
+        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:@"请先开启定位服务！"];
     });
 }
 

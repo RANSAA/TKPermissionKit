@@ -12,6 +12,33 @@
 
 @implementation TKPermissionPublic
 
+
+#pragma mark 国际化
+
++ (NSBundle *)TKPermissionBundle
+{
+    static NSBundle *bundle = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+//        //bundle文件是处于mainBundle中的
+//        NSString *path =  [[NSBundle mainBundle] pathForResource:@"TKPermissionKit" ofType:@"bundle"];
+//        bundle = [NSBundle bundleWithPath:path];
+
+        //这种方式获取NSBundle不会因为二进制文件，bundle文件是否处于framework中而受到影响
+        bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[TKPermissionPublic class]] pathForResource:@"TKPermissionKit" ofType:@"bundle"]];
+    });
+    return bundle;
+}
+
+/** 直接从bundle文件中读取指定string，而获取国际化字符串*/
++ (NSString *)localizedStringForKey:(NSString *)key tab:(NSString *)tab
+{
+    NSString *ls1 = NSLocalizedStringFromTableInBundle(key, tab, [self TKPermissionBundle], nil);
+    return ls1;
+}
+
+
+#pragma mark alert
 /**
  包装UIAlertController，跳转进入设置页面，进行权限设置
  alert时会自动切换，进入主线程
@@ -20,7 +47,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"设置") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
                 if (@available(iOS 10.0, *)) {
@@ -30,7 +57,7 @@
                 }
             }
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"取消") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         }]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
@@ -45,7 +72,7 @@
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addAction:[UIAlertAction actionWithTitle:@"设置" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"设置") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
 //            if ([[UIApplication sharedApplication] canOpenURL:url]) {
 //                if (@available(iOS 10.0, *)) {
@@ -55,7 +82,7 @@
 //                }
 //            }
 //        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"知道了") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         }]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];

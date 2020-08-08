@@ -38,14 +38,14 @@
             name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
         }
         NSString *msg = [NSString stringWithFormat:@"访问HealthKit时需要您提供权限，请打开应用\"健康\"，选择\"数据来源\"，点击进入\"%@\"，选择\"打开所有类别\"",name];
-        [TKPermissionPublic alertActionTitle:@"权限提示" msg:msg];
+        [TKPermissionPublic alertActionTitle:TKPermissionString(@"权限提示") msg:msg];
     });
 }
 
 - (void)alertAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:@"提示" msg:@"当前设备不支持HealthKit！"];
+        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:@"当前设备不支持HealthKit！"];
     });
 }
 

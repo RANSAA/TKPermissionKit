@@ -31,6 +31,8 @@
 		04CDB362230A4D9C00E86E38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB360230A4D9C00E86E38 /* LaunchScreen.storyboard */; };
 		04CDB365230A4D9C00E86E38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB364230A4D9C00E86E38 /* main.m */; };
 		04CDB374230A526600E86E38 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB373230A526600E86E38 /* ListViewController.m */; };
+		3FF4C15824DE889600ED7B67 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796862330C8850049B11C /* MapKit.framework */; };
+		3FF4C16D24DE8D1C00ED7B67 /* TKPermissionKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3FF4C16C24DE8D1C00ED7B67 /* TKPermissionKit.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +88,7 @@
 		04CDB364230A4D9C00E86E38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04CDB372230A526600E86E38 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		04CDB373230A526600E86E38 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		3FF4C16C24DE8D1C00ED7B67 /* TKPermissionKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TKPermissionKit.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF4C15824DE889600ED7B67 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +307,7 @@
 		04CDB36B230A4DF300E86E38 /* TKPermissionKit */ = {
 			isa = PBXGroup;
 			children = (
+				3FF4C17D24DEA72D00ED7B67 /* Resources */,
 				04B5C55E2350546600284691 /* Bluetooth */,
 				04B5C5442350105400284691 /* Calendar */,
 				04B5C53F23500FE800284691 /* Camera */,
@@ -324,6 +329,14 @@
 			);
 			path = TKPermissionKit;
 			sourceTree = SOURCE_ROOT;
+		};
+		3FF4C17D24DEA72D00ED7B67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3FF4C16C24DE8D1C00ED7B67 /* TKPermissionKit.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -383,6 +396,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 04CDB349230A4D9B00E86E38;
 			productRefGroup = 04CDB353230A4D9B00E86E38 /* Products */;
@@ -402,6 +416,7 @@
 				04CDB362230A4D9C00E86E38 /* LaunchScreen.storyboard in Resources */,
 				04CDB35F230A4D9C00E86E38 /* Assets.xcassets in Resources */,
 				04CDB35D230A4D9B00E86E38 /* Main.storyboard in Resources */,
+				3FF4C16D24DE8D1C00ED7B67 /* TKPermissionKit.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -521,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

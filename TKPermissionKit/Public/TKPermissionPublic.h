@@ -12,11 +12,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//block认证回调
 typedef void(^TKPermissionBlock)(BOOL isAuth);
+//多语言对应字符串获取
+#define TKPermissionString(key) [TKPermissionPublic localizedStringForKey:key tab:@"InfoPlist"]
 
 
 @interface TKPermissionPublic : NSObject
 
+/** 直接从bundle文件中读取指定string，而获取国际化字符串*/
++ (NSString *)localizedStringForKey:(NSString *)key tab:(NSString *)tab;
+
+
+#pragma mark alert
 /**
  包装UIAlertController，跳转进入设置页面，进行权限设置
  alert时会自动切换，进入主线程
