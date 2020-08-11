@@ -20,33 +20,31 @@
 
 @implementation TKPermissionHealth
 
-+ (id)shared
++ (instancetype)shared
 {
     static dispatch_once_t onceToken;
-    static TKPermissionHealth *obj = nil;
+    static id obj = nil;
     dispatch_once(&onceToken, ^{
-        obj = [TKPermissionHealth new];
+        NSString *name = [NSString stringWithFormat:@"%@",self.class];
+        Class class = NSClassFromString(name);
+        obj = [[class alloc] init];
     });
     return obj;
 }
 
 - (void)jumpSetting
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-        if (!name) {
-            name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
-        }
-        NSString *msg = [NSString stringWithFormat:@"访问HealthKit时需要您提供权限，请打开应用\"健康\"，选择\"数据来源\"，点击进入\"%@\"，选择\"打开所有类别\"",name];
-        [TKPermissionPublic alertActionTitle:TKPermissionString(@"权限提示") msg:msg];
-    });
+    NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    if (!name) {
+        name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    }
+    NSString *msg = [NSString stringWithFormat:@"访问HealthKit时需要您提供权限，请打开应用\"健康\"，选择\"数据来源\"，点击进入\"%@\"，选择\"打开所有类别\"",name];
+    [TKPermissionPublic alertTips:msg];
 }
 
 - (void)alertAction
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:TKPermissionString(@"当前设备不支持HealthKit")];
-    });
+    [TKPermissionPublic alertTips:TKPermissionString(@"当前设备不支持HealthKit")];
 }
 
 /**

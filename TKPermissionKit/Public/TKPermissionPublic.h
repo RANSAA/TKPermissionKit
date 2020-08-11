@@ -25,17 +25,30 @@ typedef void(^TKPermissionBlock)(BOOL isAuth);
 
 
 #pragma mark alert
-/**
- 包装UIAlertController，跳转进入设置页面，进行权限设置
- alert时会自动切换，进入主线程
- **/
-+ (void)alertTitle:(NSString *)title msg:(NSString *)msg;
+
+/// 包装UIAlertController, 具有两个按钮
+/// @param title 标题
+/// @param msg 内容
+/// @param leftTitle 左边按钮文字
+/// @param rightTitle 右边按钮文字
++ (void)alertTitle:(NSString *)title msg:(NSString *)msg leftTitle:(NSString *)leftTitle rightTitle:(NSString *)rightTitle;
+
+/// 包装UIAlertController,只有一个按钮
+/// @param title 标题
+/// @param msg 内容
+/// @param actionTitle 按钮文字
++ (void)alertActionTitle:(NSString *)title msg:(NSString *)msg actionTitle:(NSString *)actionTitle;
+
 
 /**
- 包装UIAlertController，简单的alert action
- ps:只是一个简单的弹窗
- **/
-+ (void)alertActionTitle:(NSString *)title msg:(NSString *)msg;
+ 简单弹窗，一个按钮
+ */
++ (void)alertTips:(NSString *)msg;
+
+/**
+ 权限提示alert，两个按钮
+ */
++ (void)alertPromptTips:(NSString *)msg;
 
 @end
 

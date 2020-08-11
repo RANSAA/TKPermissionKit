@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionLocationAlways : NSObject
 
-+ (id)shared;
++ (instancetype)shared;
 
 /**
  请求始终访问位置权限

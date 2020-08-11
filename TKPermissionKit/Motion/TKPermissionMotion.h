@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionMotion : NSObject
 
-+ (id)shared;
++ (instancetype)shared;
 
 /**
  请求运动与健身权限

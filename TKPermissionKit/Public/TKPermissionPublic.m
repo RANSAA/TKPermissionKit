@@ -77,19 +77,18 @@
 
 
 
-
-
-
 #pragma mark alert
-/**
- 包装UIAlertController，跳转进入设置页面，进行权限设置
- alert时会自动切换，进入主线程
- **/
-+ (void)alertTitle:(NSString *)title msg:(NSString *)msg
+
+/// 包装UIAlertController, 具有两个按钮
+/// @param title 标题
+/// @param msg 内容
+/// @param leftTitle 左边按钮文字
+/// @param rightTitle 右边按钮文字
++ (void)alertTitle:(NSString *)title msg:(NSString *)msg leftTitle:(NSString *)leftTitle rightTitle:(NSString *)rightTitle
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"设置") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:leftTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
             if ([[UIApplication sharedApplication] canOpenURL:url]) {
                 if (@available(iOS 10.0, *)) {
@@ -99,7 +98,23 @@
                 }
             }
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"取消") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:rightTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+        }]];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    });
+}
+
+
+/// 包装UIAlertController,只有一个按钮
+/// @param title 标题
+/// @param msg 内容
+/// @param actionTitle 按钮文字
++ (void)alertActionTitle:(NSString *)title msg:(NSString *)msg actionTitle:(NSString *)actionTitle;
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         }]];
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
@@ -107,28 +122,19 @@
 }
 
 /**
- 包装UIAlertController，简单的alert action
- ps:只是一个简单的弹窗
- **/
-+ (void)alertActionTitle:(NSString *)title msg:(NSString *)msg
+ 简单弹窗，没有action事件
+ */
++ (void)alertTips:(NSString *)msg
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
-//        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"设置") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//            if ([[UIApplication sharedApplication] canOpenURL:url]) {
-//                if (@available(iOS 10.0, *)) {
-//                    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
-//                } else {
-//                    [[UIApplication sharedApplication] openURL:url];
-//                }
-//            }
-//        }]];
-        [alert addAction:[UIAlertAction actionWithTitle:TKPermissionString(@"知道了") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [self alertActionTitle:TKPermissionString(@"提示") msg:msg actionTitle:TKPermissionString(@"知道了")];
+}
 
-        }]];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-    });
+/**
+ 权限提示alert
+ */
++ (void)alertPromptTips:(NSString *)msg
+{
+    [self alertTitle:TKPermissionString(@"权限提示") msg:msg leftTitle:TKPermissionString(@"设置") rightTitle:TKPermissionString(@"取消")];
 }
 
 

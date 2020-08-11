@@ -18,21 +18,21 @@
 
 @implementation TKPermissionBluetooth
 
-+ (id)shared
++ (instancetype)shared
 {
     static dispatch_once_t onceToken;
-    static TKPermissionBluetooth *obj = nil;
+    static id obj = nil;
     dispatch_once(&onceToken, ^{
-        obj = [TKPermissionBluetooth new];
+        NSString *name = [NSString stringWithFormat:@"%@",self.class];
+        Class class = NSClassFromString(name);
+        obj = [[class alloc] init];
     });
     return obj;
 }
 
 - (void)jumpSetting
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:TKPermissionString(@"访问蓝牙时需要您提供权限，请开启\"蓝牙共享\"")];
-    });
+    [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问蓝牙时需要您提供权限，请开启\"蓝牙共享\"")];
 }
 
 /**

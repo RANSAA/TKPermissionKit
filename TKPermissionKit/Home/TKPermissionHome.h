@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionHome : NSObject
 
-+ (id)shared;
++ (instancetype)shared;
 
 /**
  请求HomeKit住宅数据权限

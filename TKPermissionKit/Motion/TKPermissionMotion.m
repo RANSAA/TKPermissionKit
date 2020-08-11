@@ -20,28 +20,26 @@
 
 @implementation TKPermissionMotion
 
-+ (id)shared
++ (instancetype)shared
 {
     static dispatch_once_t onceToken;
-    static TKPermissionMotion *obj = nil;
+    static id obj = nil;
     dispatch_once(&onceToken, ^{
-        obj = [TKPermissionMotion new];
+        NSString *name = [NSString stringWithFormat:@"%@",self.class];
+        Class class = NSClassFromString(name);
+        obj = [[class alloc] init];
     });
     return obj;
 }
 
 - (void)jumpSetting
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:TKPermissionString(@"访问运动与健身时需要您提供权限，去设置！")];
-    });
+    [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问运动与健身时需要您提供权限，去设置！")];
 }
 
 - (void)alertAction
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:TKPermissionString(@"当前设备不支持运动与健身！")];
-    });
+    [TKPermissionPublic alertTips:TKPermissionString(@"当前设备不支持运动与健身！")];
 }
 
 

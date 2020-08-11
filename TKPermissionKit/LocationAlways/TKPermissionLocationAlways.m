@@ -19,28 +19,26 @@
 
 @implementation TKPermissionLocationAlways
 
-+ (id)shared
++ (instancetype)shared
 {
     static dispatch_once_t onceToken;
-    static TKPermissionLocationAlways *obj = nil;
+    static id obj = nil;
     dispatch_once(&onceToken, ^{
-        obj = [TKPermissionLocationAlways new];
+        NSString *name = [NSString stringWithFormat:@"%@",self.class];
+        Class class = NSClassFromString(name);
+        obj = [[class alloc] init];
     });
     return obj;
 }
 
 - (void)jumpSetting
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:TKPermissionString(@"访问位置时需要您提供权限，请将位置设置为\"始终\"")];
-    });
+    [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问位置时需要您提供权限，请将位置设置为\"始终\"")];
 }
 
 - (void)alertAction
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:TKPermissionString(@"请先到\"隐私\"中，开启定位服务！")];
-    });
+   [TKPermissionPublic alertTips:TKPermissionString(@"请先到\"隐私\"中，开启定位服务！")];
 }
 
 /**

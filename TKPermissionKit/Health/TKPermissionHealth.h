@@ -36,8 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionHealth : NSObject
 
-+ (id)shared;
-
++ (instancetype)shared;
 /**
  请求HealthKit权限
  isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert

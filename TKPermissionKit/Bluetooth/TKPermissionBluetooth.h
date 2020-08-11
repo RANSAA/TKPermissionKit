@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionBluetooth : NSObject
 
-+ (id)shared;
++ (instancetype)shared;
 
 /**
  请求蓝牙权限
