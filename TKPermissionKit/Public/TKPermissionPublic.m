@@ -20,10 +20,6 @@
     static NSBundle *bundle = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//        //bundle文件是处于mainBundle中的
-//        NSString *path =  [[NSBundle mainBundle] pathForResource:@"TKPermissionKit" ofType:@"bundle"];
-//        bundle = [NSBundle bundleWithPath:path];
-
         //这种方式获取NSBundle不会因为二进制文件，bundle文件是否处于framework中而受到影响
         bundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[TKPermissionPublic class]] pathForResource:@"TKPermissionKit" ofType:@"bundle"]];
     });
@@ -33,9 +29,55 @@
 /** 直接从bundle文件中读取指定string，而获取国际化字符串*/
 + (NSString *)localizedStringForKey:(NSString *)key tab:(NSString *)tab
 {
-    NSString *ls1 = NSLocalizedStringFromTableInBundle(key, tab, [self TKPermissionBundle], nil);
-    return ls1;
+//    NSString *ls1 = NSLocalizedStringFromTableInBundle(key, tab, [self TKPermissionBundle] , nil);
+
+    NSString *value = [[self lprojBundle] localizedStringForKey:key value:nil table:tab];
+    return value;
 }
+
+//获取当前语言lproj文件对应的bundle
++ (NSBundle *)lprojBundle
+{
+    static NSBundle *bundle = nil;
+    static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+          NSMutableArray *lproj = @[].mutableCopy;
+          NSString *path = [[self TKPermissionBundle] resourcePath];
+          NSArray *ary = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+          for (NSString *dirName in ary) {
+              if ([dirName hasSuffix:@"lproj"]) {
+                  [lproj addObject:[dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""]];
+              }
+          }
+          NSString *language = [NSLocale preferredLanguages].firstObject;
+          //如果当前系统语言与lproj文件不对应，则进行手动适配
+          if (![lproj containsObject:language]) {
+              if ([language hasPrefix:@"en"]) {
+                  language = @"en";
+              } else if ([language hasPrefix:@"zh"]) {
+                  if ([language rangeOfString:@"Hans"].location != NSNotFound) {
+                      language = @"zh-Hans"; // 简体中文
+                  } else { // zh-Hant\zh-HK\zh-TW
+                      language = @"zh-Hant"; // 繁體中文
+                  }
+              } else if ([language hasPrefix:@"ko"]) {
+                  language = @"ko";
+              } else if ([language hasPrefix:@"ru"]) {
+                  language = @"ru";
+              } else if ([language hasPrefix:@"uk"]) {
+                  language = @"uk";
+              } else {
+                  language = @"zh-Hans";
+              }
+          }
+          bundle = [NSBundle bundleWithPath:[[self TKPermissionBundle] pathForResource:language ofType:@"lproj"]];
+      });
+    return bundle;
+}
+
+
+
+
 
 
 #pragma mark alert

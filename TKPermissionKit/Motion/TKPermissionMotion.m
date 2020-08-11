@@ -33,14 +33,14 @@
 - (void)jumpSetting
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:@"访问运动与健身时需要您提供权限，请设置！"];
+        [TKPermissionPublic alertTitle:TKPermissionString(@"权限提示") msg:TKPermissionString(@"访问运动与健身时需要您提供权限，去设置！")];
     });
 }
 
 - (void)alertAction
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:@"前设备不支持运动与健身！"];
+        [TKPermissionPublic alertActionTitle:TKPermissionString(@"提示") msg:TKPermissionString(@"当前设备不支持运动与健身！")];
     });
 }
 
