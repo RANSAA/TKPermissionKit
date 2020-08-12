@@ -35,6 +35,14 @@
     [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问住宅数据时需要您提供权限，去设置！")];
 }
 
+- (NSString *)name
+{
+    NSString *name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+    if (!name) {
+        name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+    }
+    return name;
+}
 
 - (HMHomeManager *)homeManager
 {
@@ -53,19 +61,40 @@
 {
     self.block = completion;
     self.isAlert = isAlert;
-
     self.homeManager.delegate = self;
+
+    if (@available(iOS 13.0, *)) {
+        [self checkAuth];
+    } else {
+    }
 }
 
-#pragma mark HMHomeManagerDelegate
-- (void)homeManagerDidUpdateHomes:(HMHomeManager *)manager
+//ios13+ 直接检查权限状态
+- (void)checkAuth API_AVAILABLE(ios(13.0))
 {
-    if (manager.homes.count > 0) {
+    HMHomeManagerAuthorizationStatus status = self.homeManager.authorizationStatus;
+    if (status != 0) {
+        if (status == 5) {
+            self.block(YES);
+        }else if (status == 1){
+            if (self.isAlert) {
+                [self jumpSetting];
+            }
+            self.block(NO);
+        }
+    }
+}
+
+
+//ios13以下可以通过该方法，弹出授权框
+- (void)checkAuthOldWithManager:(HMHomeManager *)manager
+{
+    if (manager.homes.count >0) {
         self.block(YES);
         self.homeManager.delegate = nil;
-    } else {
+    }else{
         __weak HMHomeManager *weakHomeManager = manager;
-        [manager addHomeWithName:@"Test Home" completionHandler:^(HMHome * _Nullable home, NSError * _Nullable error) {
+        [manager addHomeWithName:[self name] completionHandler:^(HMHome * _Nullable home, NSError * _Nullable error) {
             if (!error) {
                 self.block(YES);
                 self.homeManager.delegate = nil;
@@ -85,9 +114,35 @@
             }
             if (home) {
                 [weakHomeManager removeHome:home completionHandler:^(NSError * _Nullable error) {
+
                 }];
             }
         }];
+    }
+}
+
+#pragma mark HMHomeManagerDelegate
+- (void)homeManagerDidUpdateHomes:(HMHomeManager *)manager
+{
+    if (@available(iOS 13.0, *)) {
+
+    }else{
+        [self checkAuthOldWithManager:manager];
+    }
+}
+
+- (void)homeManager:(HMHomeManager *)manager didUpdateAuthorizationStatus:(HMHomeManagerAuthorizationStatus)status
+API_AVAILABLE(ios(13.0))
+{
+    if (status == HMHomeManagerAuthorizationStatusDetermined) {//1-不允许
+        if (self.isAlert) {
+            [self jumpSetting];
+        }
+        self.block(NO);
+    }else if(status == HMHomeManagerAuthorizationStatusAuthorized){
+        self.block(YES);
+    }else{
+        self.block(YES);
     }
 }
 

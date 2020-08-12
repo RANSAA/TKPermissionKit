@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  要求：iOS8.0+
  注意: 必须使用单利请求，获取定位权限
 
+  PS: TKPermissionLocationAlways 与 TKPermissionLocationWhen  二选一使用
 
  权限描述:
  Privacy - Location When In Use Usage Description                   需要您的同意，才能在使用期间访问位置

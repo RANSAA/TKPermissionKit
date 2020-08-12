@@ -40,11 +40,46 @@
  **/
 - (BOOL)checkAuth
 {
-    BOOL isAuth = NO;
-    if ([CBPeripheralManager authorizationStatus] == CBPeripheralManagerAuthorizationStatusAuthorized) {
-        isAuth = YES;
+//    BOOL isAuth = NO;
+//    if (@available(iOS 10.0, *)) {
+//        if (@available(iOS 13.1, *)) {
+//            if ([CBManager authorization] == CBManagerAuthorizationAllowedAlways) {
+//                isAuth = YES;
+//            }
+//        } else {
+//            if ([CBPeripheralManager authorizationStatus] == CBPeripheralManagerAuthorizationStatusAuthorized) {
+//                isAuth = YES;
+//            }
+//        }
+//    } else {
+//        isAuth = YES;
+//    }
+//    return isAuth;
+    
+    return [self authorizationCode] == 3?YES:NO; // CBManagerAuthorizationAllowedAlways || CBPeripheralManagerAuthorizationStatusAuthorized
+}
+
+/**
+ 查询蓝牙授权状态，统一转换成NSInterger类型
+ code = 3 表示授权成功
+ 0 : CBManagerAuthorizationNotDetermined || CBPeripheralManagerAuthorizationStatusNotDetermined
+ 1 : CBManagerAuthorizationRestricted || CBPeripheralManagerAuthorizationStatusRestricted
+ 2 : CBManagerAuthorizationDenied || CBPeripheralManagerAuthorizationStatusDenied
+ 3 : CBManagerAuthorizationAllowedAlways || CBPeripheralManagerAuthorizationStatusAuthorized
+ */
+- (NSInteger)authorizationCode
+{
+    NSInteger code = 0;
+    if (@available(iOS 10.0, *)) {
+        if (@available(iOS 13.1, *)) {
+            code = [CBManager authorization];
+        } else {
+            code = [CBPeripheralManager authorizationStatus];
+        }
+    } else {
+        code = [CBPeripheralManager authorizationStatus];
     }
-    return isAuth;
+    return code;
 }
 
 /**
@@ -57,24 +92,40 @@
     self.block = completion;
     self.isAlert = isAlert;
     self.peripheralManager = [[CBPeripheralManager alloc]initWithDelegate:self queue:dispatch_get_global_queue(0, 0) options:nil];
-
-
 }
 
 
 #pragma mark CBPeripheralManagerDelegate
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-    CBPeripheralManagerAuthorizationStatus status = [CBPeripheralManager authorizationStatus];
-    if (status == CBPeripheralManagerAuthorizationStatusAuthorized) {
-        self.block(YES);
-    }else{
-        if (self.isAlert && status == CBPeripheralManagerAuthorizationStatusDenied) {
-            [self jumpSetting];
-        }
-        self.block(NO);
+//    CBPeripheralManagerAuthorizationStatus status = [CBPeripheralManager authorizationStatus];
+//    if (status == CBPeripheralManagerAuthorizationStatusAuthorized) {
+//        self.block(YES);
+//    }else{
+//        if (self.isAlert && status == CBPeripheralManagerAuthorizationStatusDenied) {
+//            [self jumpSetting];
+//        }
+//        self.block(NO);
+//    }
+//    self.peripheralManager = nil;
+//
+//    CBManagerAuthorization status = [CBManager authorization];
+//    if (status == CBManagerAuthorizationAllowedAlways) {
+//        self.block(YES);
+//    }else{
+//        if (self.isAlert && status == CBManagerAuthorizationDenied) {
+//            [self jumpSetting];
+//        }
+//        self.block(NO);
+//    }
+//    self.peripheralManager = nil;
+
+    self.block([self checkAuth]);
+    if (self.isAlert && [self authorizationCode] ==2) { // 2: CBManagerAuthorizationDenied || CBPeripheralManagerAuthorizationStatusDenied
+        [self jumpSetting];
     }
     self.peripheralManager = nil;
 }
+
 
 @end

@@ -36,6 +36,8 @@
 #import "TKPermissionHome.h"
 #import "TKPermissionMotion.h"
 #import "TKPermissionNotification.h"
+#import "TKPermissionFolders.h"
+
 
 
 #endif /* TKPermissionKit_h */

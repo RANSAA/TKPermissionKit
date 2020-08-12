@@ -9,12 +9,15 @@
 #import "TKPermissionLocationAlways.h"
 #import "TKPermissionPublic.h"
 #import <CoreLocation/CoreLocation.h>
+#import "TKPermissionLocationManager.h"
+
 
 
 @interface TKPermissionLocationAlways ()<CLLocationManagerDelegate>
 @property (nonatomic, strong) CLLocationManager         *locationManager;       // 定位
 @property (nonatomic, copy  ) TKPermissionBlock block;
 @property (nonatomic, assign) BOOL isAlert;
+@property (nonatomic, assign) NSInteger count;
 @end
 
 @implementation TKPermissionLocationAlways
@@ -33,12 +36,12 @@
 
 - (void)jumpSetting
 {
-    [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问位置时需要您提供权限，请将位置设置为\"始终\"")];
+    [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问位置时需要您提供权限，去设置！")];
 }
 
 - (void)alertAction
 {
-   [TKPermissionPublic alertTips:TKPermissionString(@"请先到\"隐私\"中，开启定位服务！")];
+    [TKPermissionPublic alertTips:TKPermissionString(@"请先到\"隐私\"中，开启定位服务！")];
 }
 
 /**
@@ -66,8 +69,11 @@
 {
     self.block = completion;
     self.isAlert = isAlert;
+    self.count = 0;
     if ([CLLocationManager locationServicesEnabled]) {
-        self.locationManager = [[CLLocationManager alloc]init];
+//        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager = [TKPermissionLocationManager signleLocationManager];
+        self.locationManager.delegate = nil;
         self.locationManager.delegate = self;
         [self.locationManager requestAlwaysAuthorization];
     }else{
@@ -81,13 +87,20 @@
  **/
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    if (status == kCLAuthorizationStatusAuthorizedAlways) {
-        self.block(YES);
+    if (status == kCLAuthorizationStatusNotDetermined) {//第一次弹出授权页面，不处理
+
     }else{
-        if (self.isAlert && (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusAuthorizedWhenInUse)) {
-            [self jumpSetting];
+        self.count += 1;
+        if (self.count == 1) {
+            if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+                self.block(YES);
+            }else{
+                if (self.isAlert && status == kCLAuthorizationStatusDenied) {
+                    [self jumpSetting];
+                }
+                self.block(NO);
+            }
         }
-        self.block(NO);
     }
 }
 

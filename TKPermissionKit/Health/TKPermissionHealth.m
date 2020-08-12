@@ -38,7 +38,8 @@
     if (!name) {
         name = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
     }
-    NSString *msg = [NSString stringWithFormat:@"访问HealthKit时需要您提供权限，请打开应用\"健康\"，选择\"数据来源\"，点击进入\"%@\"，选择\"打开所有类别\"",name];
+    NSString *str = TKPermissionString(@"访问Health时需要提供权限，请打开\"健康\"，为\"%@\"设置权限！");
+    NSString *msg = [str stringByReplacingOccurrencesOfString:@"%@" withString:name];
     [TKPermissionPublic alertTips:msg];
 }
 

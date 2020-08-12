@@ -27,8 +27,7 @@
 
     [self get];
 
-
-
+    self.automaticallyAdjustsScrollViewInsets = NO;
 
 }
 
@@ -37,19 +36,20 @@
     self.aryTitle= @[@"打开相册权限",
                      @"打开相机权限",
                      @"打开媒体资料库权限",
-                     @"打开蓝牙权限 ⚠️",
+                     @"打开蓝牙权限 ",
                      @"打开麦克风权限",
-                     @"打开位置权限-使用期间",
-                     @"打开位置权限-始终使用",
+                     @"打开位置权限-使用期间 ",
+                     @"打开位置权限-始终使用 ",
                      @"打开推送权限",
-                     @"打开语音识别权限",
+                     @"打开语音识别权限 ",
                      @"打开日历权限",
-                     @"打开通讯录权限 ⚠️",
+                     @"打开通讯录权限 ",
                      @"打开提醒事项权限",
-                     @"打开移动网络权限   ⚠️",
-                     @"打开健康Health权限  ⚠️",
-                     @"打开运动与健身权限",
-                     @"打开HomeKit权限    ⚠️⚠️"
+                     @"打开移动网络权限   ⚠️没有作用",
+                     @"打开健康Health权限  ",
+                     @"打开运动与健身权限 ",
+                     @"打开HomeKit权限    ",
+                     @"打开文件与文件夹"
                      ];
     self.tableView.rowHeight = 55;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -135,9 +135,9 @@
         {
             [[TKPermissionLocationWhen shared] authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
-                    NSLog(@"使用应用期间权限获取成功！");
+                    NSLog(@"使用<<应用期间>>权限获取成功！");
                 }else{
-                    NSLog(@"使用应用期间权限获取失败");
+                    NSLog(@"使用<<应用期间>>权限获取失败");
                 }
             }];
         }
@@ -146,9 +146,9 @@
         {
             [[TKPermissionLocationAlways shared] authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
-                    NSLog(@"定位始终访问权限获取成功！");
+                    NSLog(@"定位<<始终访问>>权限获取成功！");
                 }else{
-                    NSLog(@"定位始终访问权限获取失败");
+                    NSLog(@"定位<<始终访问>>权限获取失败");
                 }
             }];
         }
@@ -248,6 +248,16 @@
             }];
         }
             break;
+            case 16:
+        {
+            [TKPermissionFolders authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"打开文件与文件夹成功！");
+                }else{
+                    NSLog(@"打开文件与文件夹失败");
+                }
+            }];
+        }
         default:
             break;
     }

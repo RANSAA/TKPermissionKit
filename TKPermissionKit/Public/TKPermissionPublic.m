@@ -66,6 +66,8 @@
                   language = @"ru";
               } else if ([language hasPrefix:@"uk"]) {
                   language = @"uk";
+              } else if ([language hasPrefix:@"ja"]) {
+                  language = @"ja";
               } else {
                   language = @"zh-Hans";
               }

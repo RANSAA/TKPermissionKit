@@ -9,6 +9,8 @@
 #import "TKPermissionLocationWhen.h"
 #import "TKPermissionPublic.h"
 #import <CoreLocation/CoreLocation.h>
+#import "TKPermissionLocationManager.h"
+
 
 
 @interface TKPermissionLocationWhen ()<CLLocationManagerDelegate>
@@ -33,12 +35,12 @@
 
 - (void)jumpSetting
 {
-     [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问位置时需要您提供权限，去设置!")];
+     [TKPermissionPublic alertPromptTips:TKPermissionString(@"访问位置时需要您提供权限，去设置！")];
 }
 
 - (void)alertAction
 {
-    [TKPermissionPublic alertTips:TKPermissionString(@"请先开启定位服务！")];
+    [TKPermissionPublic alertTips:TKPermissionString(@"请先到\"隐私\"中，开启定位服务！")];
 }
 
 /**
@@ -66,7 +68,8 @@
     self.block = completion;
     self.isAlert = isAlert;
     if ([CLLocationManager locationServicesEnabled]) {
-        self.locationManager = [[CLLocationManager alloc]init];
+//        self.locationManager = [[CLLocationManager alloc]init];
+        self.locationManager = [TKPermissionLocationManager signleLocationManager];
         self.locationManager.delegate = self;
         [self.locationManager requestWhenInUseAuthorization];
     }else{
@@ -80,13 +83,17 @@
  **/
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 {
-    if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-        self.block(YES);
+    if (status == kCLAuthorizationStatusNotDetermined) {//第一次弹出授权页面，不处理
+
     }else{
-        if (self.isAlert && status == kCLAuthorizationStatusDenied) {
-            [self jumpSetting];
+        if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+            self.block(YES);
+        }else{
+            if (self.isAlert && status == kCLAuthorizationStatusDenied) {
+                [self jumpSetting];
+            }
+            self.block(NO);
         }
-        self.block(NO);
     }
 }
 

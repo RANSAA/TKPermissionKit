@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>TKPermissionKit</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -31,9 +31,9 @@
 	</dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>需要您的同意，才能访问媒体与Apple Music</string>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>需要您的同意，才能访问蓝牙</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>需要您的同意，才能访问蓝牙</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>需要您的同意，才能访问蓝牙</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>需要您的同意，才能访问日历</string>
@@ -69,6 +69,12 @@
 	<string>需要您的同意，才能访问语音识别</string>
 	<key>NSVideoSubscriberAccountUsageDescription</key>
 	<string>需要您的同意，才能访问Siri</string>
+	<key>UISupportsDocumentBrowser</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
