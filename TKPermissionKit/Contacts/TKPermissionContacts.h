@@ -15,8 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
  要求：iOS2.0+
  注意：本工具中使用了两个系统框架进行权限获取，他们分别是：
     <Contacts/Contacts.h>           9.0+
-    <AddressBook/AddressBook.h>     < 9.0
+
+    <AddressBook/AddressBook.h>     < 9.0  已经移出
  ⚠️⚠️⚠️如果APP审核时出现AddressBook被弃用，拒绝APP时，请自行移出<AddressBook/AddressBook.h> 相关代码
+
+
+ PS:AddressBook方式如果不被Appstore拒绝，可以直接进入该文件打开注释即可
 
 
  权限描述:

@@ -9,7 +9,7 @@
 #import "TKPermissionContacts.h"
 #import "TKPermissionPublic.h"
 #import <Contacts/Contacts.h>
-#import <AddressBook/AddressBook.h>
+//#import <AddressBook/AddressBook.h>
 
 @implementation TKPermissionContacts
 
@@ -40,19 +40,19 @@
             });
         }];
     } else {
-        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
-        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (granted) {
-                    completion(YES);
-                }else{
-                    if (isAlert) {
-                        [self jumpSetting];
-                    }
-                    completion(NO);
-                }
-            });
-        });
+//        ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
+//        ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (granted) {
+//                    completion(YES);
+//                }else{
+//                    if (isAlert) {
+//                        [self jumpSetting];
+//                    }
+//                    completion(NO);
+//                }
+//            });
+//        });
     }
 }
 
@@ -67,10 +67,10 @@
             isAuth = YES;
         }
     } else {
-        ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
-        if (status == kABAuthorizationStatusAuthorized) {
-            isAuth = YES;
-        }
+//        ABAuthorizationStatus status = ABAddressBookGetAuthorizationStatus();
+//        if (status == kABAuthorizationStatusAuthorized) {
+//            isAuth = YES;
+//        }
     }
     return isAuth;
 }

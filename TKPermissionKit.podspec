@@ -15,48 +15,46 @@ public_base       = "TKPermissionKit/Public"
 
 
 Pod::Spec.new do |spec|
-  spec.name         = "TKPermissionKit"		#框架名称
-  spec.version      = "1.2"					#版本
+  spec.name         = "TKPermissionKit"   #框架名称
+  spec.version      = "1.2.1"         #版本
   spec.summary      = "权限管理工具"          #简短的描述
   spec.description  = <<-DESC
-  使用时最好不要全部导入(除非所有的功能都使用了)，因为这样容易造成权限忘记添加的情况（即只使用了其中部分功能）
-  所有按需要的功能导入最好，如：pod 'TKPermissionKit/Photo'
+  iOS权限管理工具
+  最好是按需导入如：pod 'TKPermissionKit/Photo'
                    DESC
-  spec.homepage     = "https://github.com/RANSAA/TKPermissionKit"		#github项目首页
-  spec.license      = "MIT"			#开源协议方式
-  spec.author             = { "sayaDev" => "1352892108@qq.com" }		#作者
-  spec.source       = { :git => "https://github.com/RANSAA/TKPermissionKit.git", :tag => "v#{spec.version}" }	#对应github资源与版本
-  spec.requires_arc = true		#支持arc
+  spec.homepage     = "https://github.com/RANSAA/TKPermissionKit"   #github项目首页
+  spec.license      = "MIT"     #开源协议方式
+  spec.author             = { "sayaDev" => "1352892108@qq.com" }    #作者
+  spec.source       = { :git => "https://github.com/RANSAA/TKPermissionKit.git", :tag => "v#{spec.version}" } #对应github资源与版本
+  spec.requires_arc = true    #支持arc
 
-  # spec.platform     = :ios
-  spec.platform     = :ios, "8.0"					#支持版本
+  spec.platform     = :ios, "9.0"         #支持版本
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
   # spec.osx.deployment_target = "10.7"
   # spec.watchos.deployment_target = "2.0"
   # spec.tvos.deployment_target = "9.0"
-
-  # spec.source_files  		= public_source,"#{name}/*.*","#{name}/**/*.*"	#源文件路径相关
+  # spec.source_files     = public_source,"#{name}/*.*","#{name}/**/*.*"  #源文件路径相关
   # spec.public_header_files = public_header,"#{name}/*.h","#{name}/**/*.h"
 
   spec.source_files         = "#{name}/TKPermissionKit.h"
   spec.public_header_files  = "#{name}/TKPermissionKit.h"
 
-  
+  spec.resources            = "#{name}/Resources/*.bundle"
 
 
   #分支 
 
-  spec.subspec 'Resources' do |ss|
-    ss.resources            = "#{name}/Resources/*.bundle"
-  end  
+  # spec.subspec 'Resources' do |ss|
+  #   ss.resources            = "#{name}/Resources/*.bundle"
+  # end  
 
   spec.subspec 'Public' do |ss|
     ss.source_files         = public_source
     ss.public_header_files  = public_header
     ss.ios.frameworks       = "Foundation", "UIKit"
-    ss.dependency "#{name}/Resources"    #依赖
+    # ss.dependency "#{name}/Resources"    #依赖
   end
 
   spec.subspec 'Photo' do |ss|
@@ -125,7 +123,8 @@ Pod::Spec.new do |spec|
   spec.subspec 'Contacts' do |ss|
     ss.source_files         = "#{name}/Contacts/#{file_source}"
     ss.public_header_files  = "#{name}/Contacts/#{file_header}"
-    ss.ios.frameworks       = "Contacts","AddressBook"
+    # ss.ios.frameworks       = "Contacts","AddressBook"
+    ss.ios.frameworks       = "Contacts"
     ss.dependency "#{public_base}"
   end
 
