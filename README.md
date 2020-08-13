@@ -26,6 +26,7 @@ TKPermissionKit应用权限获取
 
 
 #### 引用方式
+
 1.全部导入：
 ```
 pod 'TKPermissionKit'
