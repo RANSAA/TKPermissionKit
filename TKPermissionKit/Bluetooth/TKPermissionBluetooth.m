@@ -40,22 +40,6 @@
  **/
 - (BOOL)checkAuth
 {
-//    BOOL isAuth = NO;
-//    if (@available(iOS 10.0, *)) {
-//        if (@available(iOS 13.1, *)) {
-//            if ([CBManager authorization] == CBManagerAuthorizationAllowedAlways) {
-//                isAuth = YES;
-//            }
-//        } else {
-//            if ([CBPeripheralManager authorizationStatus] == CBPeripheralManagerAuthorizationStatusAuthorized) {
-//                isAuth = YES;
-//            }
-//        }
-//    } else {
-//        isAuth = YES;
-//    }
-//    return isAuth;
-    
     return [self authorizationCode] == 3?YES:NO; // CBManagerAuthorizationAllowedAlways || CBPeripheralManagerAuthorizationStatusAuthorized
 }
 
@@ -98,34 +82,20 @@
 #pragma mark CBPeripheralManagerDelegate
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-//    CBPeripheralManagerAuthorizationStatus status = [CBPeripheralManager authorizationStatus];
-//    if (status == CBPeripheralManagerAuthorizationStatusAuthorized) {
-//        self.block(YES);
-//    }else{
-//        if (self.isAlert && status == CBPeripheralManagerAuthorizationStatusDenied) {
-//            [self jumpSetting];
-//        }
-//        self.block(NO);
-//    }
-//    self.peripheralManager = nil;
-//
-//    CBManagerAuthorization status = [CBManager authorization];
-//    if (status == CBManagerAuthorizationAllowedAlways) {
-//        self.block(YES);
-//    }else{
-//        if (self.isAlert && status == CBManagerAuthorizationDenied) {
-//            [self jumpSetting];
-//        }
-//        self.block(NO);
-//    }
-//    self.peripheralManager = nil;
-
-    self.block([self checkAuth]);
+    [self returnBlock:[self checkAuth]];
     if (self.isAlert && [self authorizationCode] ==2) { // 2: CBManagerAuthorizationDenied || CBPeripheralManagerAuthorizationStatusDenied
         [self jumpSetting];
     }
     self.peripheralManager = nil;
 }
 
+
+- (void)returnBlock:(BOOL)isAuth
+{
+    __weak TKPermissionBlock block = self.block;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(isAuth);
+    });
+}
 
 @end

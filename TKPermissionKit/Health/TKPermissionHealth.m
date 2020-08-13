@@ -96,17 +96,17 @@
         [self.healthStore requestAuthorizationToShareTypes:write readTypes:read completion:^(BOOL success, NSError * _Nullable error) {
             HKAuthorizationStatus status = [self.healthStore authorizationStatusForType:stepCountType];
             if (HKAuthorizationStatusSharingAuthorized == status) {
-                completion(YES);
+                [self returnBlock:YES];
             }else{
                 if (self.isAlert) {
                     [self jumpSetting];
                 }
-                completion(NO);
+                [self returnBlock:NO];
             }
         }];
     }else{
         [self alertAction];
-        completion(NO);
+        [self returnBlock:NO];
     }
 }
 
@@ -125,6 +125,15 @@
         _healthStore = [[HKHealthStore alloc] init];
     }
     return _healthStore;
+}
+
+
+- (void)returnBlock:(BOOL)isAuth
+{
+    __weak TKPermissionBlock block = self.block;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(isAuth);
+    });
 }
 
 @end

@@ -26,14 +26,16 @@
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        if (status == PHAuthorizationStatusAuthorized) {
-            completion(YES);
-        }else{
-            if (isAlert) {
-                [self jumpSetting];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (status == PHAuthorizationStatusAuthorized) {
+                completion(YES);
+            }else{
+                if (isAlert) {
+                    [self jumpSetting];
+                }
+                completion(NO);
             }
-            completion(NO);
-        }
+        });
     }];
 }
 

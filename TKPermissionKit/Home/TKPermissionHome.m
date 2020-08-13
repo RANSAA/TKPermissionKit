@@ -75,12 +75,12 @@
     HMHomeManagerAuthorizationStatus status = self.homeManager.authorizationStatus;
     if (status != 0) {
         if (status == 5) {
-            self.block(YES);
+            [self returnBlock:YES];
         }else if (status == 1){
             if (self.isAlert) {
                 [self jumpSetting];
             }
-            self.block(NO);
+            [self returnBlock:NO];
         }
     }
 }
@@ -90,13 +90,13 @@
 - (void)checkAuthOldWithManager:(HMHomeManager *)manager
 {
     if (manager.homes.count >0) {
-        self.block(YES);
+        [self returnBlock:YES];
         self.homeManager.delegate = nil;
     }else{
         __weak HMHomeManager *weakHomeManager = manager;
         [manager addHomeWithName:[self name] completionHandler:^(HMHome * _Nullable home, NSError * _Nullable error) {
             if (!error) {
-                self.block(YES);
+                [self returnBlock:YES];
                 self.homeManager.delegate = nil;
             } else {
                 // tips：出现错误，错误类型参考 HMError.h
@@ -104,11 +104,11 @@
                     if (self.isAlert) {
                         [self jumpSetting];
                     }
-                    self.block(NO);
+                    [self returnBlock:NO];
                     self.homeManager.delegate = nil;
                     return ;
                 } else {
-                    self.block(YES);
+                    [self returnBlock:YES];
                     self.homeManager.delegate = nil;
                 }
             }
@@ -138,14 +138,20 @@ API_AVAILABLE(ios(13.0))
         if (self.isAlert) {
             [self jumpSetting];
         }
-        self.block(NO);
+        [self returnBlock:NO];
     }else if(status == HMHomeManagerAuthorizationStatusAuthorized){
-        self.block(YES);
+        [self returnBlock:YES];
     }else{
-        self.block(YES);
+        [self returnBlock:YES];
     }
 }
 
-
+- (void)returnBlock:(BOOL)isAuth
+{
+    __weak TKPermissionBlock block = self.block;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(isAuth);
+    });
+}
 
 @end

@@ -34,19 +34,19 @@
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         UNAuthorizationOptions types=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
         [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (granted) {
-                dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
                     [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
                         //
                     }];
                     completion(YES);
-                });
-            } else {
-                if (isAlert) {
-                    [self jumpSetting];
+                } else {
+                    if (isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
                 }
-                completion(NO);
-            }
+            });
         }];
     } else {
 #pragma clang diagnostic push

@@ -77,6 +77,13 @@ pod 'TKPermissionKit/FileAndFolders'        #文件
 }];
 ```
 
+3.注意
+```
+completion:^(BOOL isAuth) {
+    //这个回调都被切换到了主线程
+}
+```
+
 
 #### 网络权限的监控和判断
 本框架中的网络检测模块基本上没有作用，可以使用[ZYNetworkAccessibility](https://github.com/ziecho/ZYNetworkAccessibility)
@@ -85,7 +92,7 @@ pod 'TKPermissionKit/FileAndFolders'        #文件
 使用具体模块时，可以查看对应模块头文件中的使用说明与注意事项！
 
 #### 其它
-1.      https://github.com/EchoZuo/ECAuthorizationTools
-2.      https://github.com/skooal/PrivacyPermission
-3.      https://github.com/lixiang1994/PermissionKit    (swift)
+1. https://github.com/EchoZuo/ECAuthorizationTools
+2. https://github.com/skooal/PrivacyPermission
+3. https://github.com/lixiang1994/PermissionKit    (swift) 它的设计模式可以学一学
 

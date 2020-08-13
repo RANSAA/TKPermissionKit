@@ -28,26 +28,30 @@
     if (@available(iOS 9.0, *)) {
         CNContactStore *contactStore = [[CNContactStore alloc] init];
         [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            if (granted) {
-                completion(YES);
-            } else {
-                if (isAlert) {
-                    [self jumpSetting];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    completion(YES);
+                } else {
+                    if (isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
                 }
-                completion(NO);
-            }
+            });
         }];
     } else {
         ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
-            if (granted) {
-                completion(YES);
-            }else{
-                if (isAlert) {
-                    [self jumpSetting];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    completion(YES);
+                }else{
+                    if (isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
                 }
-                completion(NO);
-            }
+            });
         });
     }
 }

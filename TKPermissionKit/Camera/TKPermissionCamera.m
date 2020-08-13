@@ -26,14 +26,16 @@
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-        if (granted) {
-            completion(YES);
-        } else {
-            if (isAlert) {
-                [self jumpSetting];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                completion(YES);
+            } else {
+                if (isAlert) {
+                    [self jumpSetting];
+                }
+                completion(NO);
             }
-            completion(NO);
-        }
+        });
     }];
 }
 

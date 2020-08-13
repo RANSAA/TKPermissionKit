@@ -47,11 +47,16 @@ Pod::Spec.new do |spec|
 
 
   #分支 
+
+  spec.subspec 'Resources' do |ss|
+    ss.resources            = "#{name}/Resources/*.bundle"
+  end  
+
   spec.subspec 'Public' do |ss|
     ss.source_files         = public_source
     ss.public_header_files  = public_header
-    ss.resources            = "#{name}/Resources/*.bundle"
     ss.ios.frameworks       = "Foundation", "UIKit"
+    ss.dependency "#{name}/Resources"    #依赖
   end
 
   spec.subspec 'Photo' do |ss|

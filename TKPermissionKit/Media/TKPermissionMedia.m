@@ -27,14 +27,16 @@
 {
     if (@available(iOS 9.3, *)) {
         [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
-            if (status == MPMediaLibraryAuthorizationStatusAuthorized) {
-                completion(YES);
-            } else{
-                if (isAlert) {
-                    [self jumpSetting];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (status == MPMediaLibraryAuthorizationStatusAuthorized) {
+                    completion(YES);
+                } else{
+                    if (isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
                 }
-                completion(NO);
-            }
+            });
         }];
     } else {
         NSLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");

@@ -68,13 +68,12 @@
     self.block = completion;
     self.isAlert = isAlert;
     if ([CLLocationManager locationServicesEnabled]) {
-//        self.locationManager = [[CLLocationManager alloc]init];
         self.locationManager = [TKPermissionLocationManager signleLocationManager];
         self.locationManager.delegate = self;
         [self.locationManager requestWhenInUseAuthorization];
     }else{
         [self alertAction];
-        self.block(NO);
+        [self returnBlock:NO];
     }
 }
 
@@ -87,15 +86,22 @@
 
     }else{
         if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-            self.block(YES);
+            [self returnBlock:YES];
         }else{
             if (self.isAlert && status == kCLAuthorizationStatusDenied) {
                 [self jumpSetting];
             }
-            self.block(NO);
+            [self returnBlock:NO];
         }
     }
 }
 
+- (void)returnBlock:(BOOL)isAuth
+{
+    __weak TKPermissionBlock block = self.block;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(isAuth);
+    });
+}
 
 @end

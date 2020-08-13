@@ -32,14 +32,16 @@
 {
     if (@available(iOS 10.0, *)) {
         [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
-            if (status == SFSpeechRecognizerAuthorizationStatusAuthorized) {
-                completion(YES);
-            }else{
-                if (status == SFSpeechRecognizerAuthorizationStatusDenied && isAlert) {
-                    [self jumpSetting];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (status == SFSpeechRecognizerAuthorizationStatusAuthorized) {
+                    completion(YES);
+                }else{
+                    if (status == SFSpeechRecognizerAuthorizationStatusDenied && isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
                 }
-                completion(NO);
-            }
+            });
         }];
     } else {
         [self alertAction];

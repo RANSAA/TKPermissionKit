@@ -27,14 +27,16 @@
 {
     EKEventStore *store = [[EKEventStore alloc] init];
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            completion(YES);
-        } else {
-            if (isAlert) {
-                [self jumpSetting];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (granted) {
+                completion(YES);
+            } else {
+                if (isAlert) {
+                    [self jumpSetting];
+                }
+                completion(NO);
             }
-            completion(NO);
-        }
+        });
     }];
 }
 
@@ -49,5 +51,6 @@
     }
     return isAuth;
 }
+
 
 @end

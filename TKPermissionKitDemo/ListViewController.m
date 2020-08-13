@@ -84,6 +84,7 @@
                 }else{
                     NSLog(@"相册权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -92,10 +93,13 @@
             [TKPermissionCamera authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"照相机权限获取成功！");
+
                 }else{
                     NSLog(@"照相机权限获取失败");
                 }
+                [self testAddView];
             }];
+            
         }
             break;
         case 2:
@@ -106,6 +110,7 @@
                 }else{
                     NSLog(@"媒体资料库权权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -117,6 +122,7 @@
                 }else{
                     NSLog(@"蓝牙权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -128,6 +134,7 @@
                 }else{
                     NSLog(@"麦克风权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -139,6 +146,7 @@
                 }else{
                     NSLog(@"使用<<应用期间>>权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -150,6 +158,7 @@
                 }else{
                     NSLog(@"定位<<始终访问>>权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -161,6 +170,7 @@
                 }else{
                     NSLog(@"推送通知权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -172,6 +182,7 @@
                 }else{
                     NSLog(@"语音识别权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -183,6 +194,7 @@
                 }else{
                     NSLog(@"日历权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -194,6 +206,7 @@
                 }else{
                     NSLog(@"通讯录权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -205,6 +218,7 @@
                 }else{
                     NSLog(@"提醒事项权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -220,9 +234,11 @@
             [[TKPermissionHealth shared] authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"HealthKit权限获取成功！");
+
                 }else{
                     NSLog(@"HealthKit权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -234,6 +250,7 @@
                 }else{
                     NSLog(@"运动与健身权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -245,6 +262,7 @@
                 }else{
                     NSLog(@"HomeKit权限获取失败");
                 }
+                [self testAddView];
             }];
         }
             break;
@@ -256,6 +274,7 @@
                 }else{
                     NSLog(@"打开文件与文件夹失败");
                 }
+                [self testAddView];
             }];
         }
         default:
@@ -277,6 +296,16 @@
     [task resume];
 }
 
+- (void)testAddView
+{
+    UIView  *vi = [[UIView alloc] init];
+    vi.frame = CGRectMake(0, 0, 100, 100);
+    vi.backgroundColor = UIColor.purpleColor;
+    [self.view addSubview:vi];
+    [UIView animateWithDuration:1.0 animations:^{
+        vi.frame = CGRectMake(250, 250, 100, 100);
+    }];
+}
 
 
 

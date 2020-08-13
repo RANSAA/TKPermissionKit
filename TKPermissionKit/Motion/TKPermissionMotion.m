@@ -56,12 +56,12 @@
         if (@available(iOS 11.0, *)) {
             NSInteger status = [CMMotionActivityManager authorizationStatus];
             if (status == CMAuthorizationStatusAuthorized) {
-                self.block(YES);
+                [self returnBlock:YES];
             }else if (status == CMAuthorizationStatusDenied){
                 if (isAlert) {
                     [self jumpSetting];
                 }
-                self.block(NO);
+                [self returnBlock:NO];
             }else{//申请权限
                 [self queryActivityStarting];
             }
@@ -70,7 +70,7 @@
         }
     }else{
         [self alertAction];
-        self.block(NO);
+        [self returnBlock:NO];
     }
 }
 
@@ -88,15 +88,24 @@
             if (self.isAlert) {
                 [self jumpSetting];
             }
-            self.block(NO);
+            [self returnBlock:NO];
         }else{
-            self.block(YES);
+            [self returnBlock:YES];
         }
         [self.motionActivityQueue cancelAllOperations];
         self.motionActivityQueue = nil;
         [self.cmManager stopActivityUpdates];
         self.cmManager = nil;
     }];
+}
+
+
+- (void)returnBlock:(BOOL)isAuth
+{
+    __weak TKPermissionBlock block = self.block;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block(isAuth);
+    });
 }
 
 @end
