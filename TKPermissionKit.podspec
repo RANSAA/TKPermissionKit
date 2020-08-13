@@ -90,15 +90,15 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'LocationWhen' do |ss|
-    ss.source_files         = "#{name}/LocationWhen/#{file_source}"
-    ss.public_header_files  = "#{name}/LocationWhen/#{file_header}"
+    ss.source_files         = "#{name}/LocationWhen/#{file_source}",  "#{name}/LocationBase/#{file_source}"
+    ss.public_header_files  = "#{name}/LocationWhen/#{file_header}",  "#{name}/LocationBase/#{file_header}"
     ss.ios.frameworks       = "CoreLocation"
     ss.dependency "#{public_base}"
   end
 
   spec.subspec 'LocationAlways' do |ss|
-    ss.source_files         = "#{name}/LocationAlways/#{file_source}"
-    ss.public_header_files  = "#{name}/LocationAlways/#{file_header}"
+    ss.source_files         = "#{name}/LocationAlways/#{file_source}", "#{name}/LocationBase/#{file_source}"
+    ss.public_header_files  = "#{name}/LocationAlways/#{file_header}", "#{name}/LocationBase/#{file_header}"
     ss.ios.frameworks       = "CoreLocation"
     ss.dependency "#{public_base}"
   end
