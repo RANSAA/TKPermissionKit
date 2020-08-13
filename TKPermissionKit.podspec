@@ -16,7 +16,7 @@ public_base       = "TKPermissionKit/Public"
 
 Pod::Spec.new do |spec|
   spec.name         = "TKPermissionKit"		#框架名称
-  spec.version      = "1.1"					#版本
+  spec.version      = "1.2"					#版本
   spec.summary      = "权限管理工具"          #简短的描述
   spec.description  = <<-DESC
   使用时最好不要全部导入(除非所有的功能都使用了)，因为这样容易造成权限忘记添加的情况（即只使用了其中部分功能）
