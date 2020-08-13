@@ -52,7 +52,7 @@ pod 'TKPermissionKit/Health'                #健康
 pod 'TKPermissionKit/FileAndFolders'        #文件
 ```
 
-####使用方法
+#### 使用方法
 1.直接调用类方法
 
 ```
@@ -78,7 +78,7 @@ pod 'TKPermissionKit/FileAndFolders'        #文件
 ```
 
 
-####网络权限的监控和判断
+#### 网络权限的监控和判断
 本框架中的网络检测模块基本上没有作用，可以使用[ZYNetworkAccessibility](https://github.com/ziecho/ZYNetworkAccessibility)
 
 #### 注意
