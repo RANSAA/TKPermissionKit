@@ -103,7 +103,8 @@
         [alert addAction:[UIAlertAction actionWithTitle:rightTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         }]];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        UIViewController *tragetVC = [self TK_getCurrentController];
+        [tragetVC presentViewController:alert animated:YES completion:nil];
     });
 }
 
@@ -119,7 +120,8 @@
         [alert addAction:[UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 
         }]];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        UIViewController *tragetVC = [self TK_getCurrentController];
+        [tragetVC presentViewController:alert animated:YES completion:nil];
     });
 }
 
@@ -139,5 +141,58 @@
     [self alertTitle:TKPermissionString(@"权限提示") msg:msg leftTitle:TKPermissionString(@"设置") rightTitle:TKPermissionString(@"取消")];
 }
 
+
+
+#pragma mark VC
+/**
+ 获取keyWindow,适配iOS13.0+
+ PS:如果需要实现iPad多屏处理，最好是使用SceneDelegate管理Window
+ */
++ (UIWindow*)TK_keyWindow
+{
+    UIWindow *mainWindow = nil;
+    if ( @available(iOS 13.0, *) ) {
+        //如果是多场景，可以遍历windows,检查window.isKeyWindow获取
+        NSArray *windows = UIApplication.sharedApplication.windows;
+        for (UIWindow *window in windows) {
+            if (window.isKeyWindow) {
+                mainWindow = window;
+                break;
+            }
+        }
+        if (!mainWindow) {
+            mainWindow = windows.firstObject;
+        }
+    } else {
+        mainWindow = UIApplication.sharedApplication.keyWindow;
+    }
+    return mainWindow;
+}
+
+/**
+ 获取当前显示的视图控制器
+ */
++ (UIViewController *)TK_getCurrentController
+{
+    UIViewController *rootVC = [self TK_keyWindow].rootViewController;
+    UIViewController *currentVC = [self TK_getCurrentVCFrom:rootVC];
+    return currentVC;
+}
+
++ (UIViewController *)TK_getCurrentVCFrom:(UIViewController *)rootVC
+{
+    UIViewController *currentVC;
+    while (rootVC.presentedViewController) {
+        rootVC = rootVC.presentedViewController;
+    }
+    if ([rootVC isKindOfClass:UITabBarController.class]) {
+        currentVC = [self TK_getCurrentVCFrom:[(UITabBarController *)rootVC selectedViewController]];
+    }else if ([rootVC isKindOfClass:UINavigationController.class]){
+        currentVC = [self TK_getCurrentVCFrom:[(UINavigationController *)rootVC visibleViewController]];
+    }else{
+        currentVC = rootVC;
+    }
+    return currentVC;;
+}
 
 @end
