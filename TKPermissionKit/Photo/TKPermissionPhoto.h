@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TKPermissionPublic.h"
 
 /**
  功能：相册权限获取与请求

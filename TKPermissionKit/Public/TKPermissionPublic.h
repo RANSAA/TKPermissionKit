@@ -39,6 +39,10 @@ typedef void(^TKPermissionBlock)(BOOL isAuth);
 /// @param actionTitle 按钮文字
 + (void)alertActionTitle:(NSString *)title msg:(NSString *)msg actionTitle:(NSString *)actionTitle;
 
+/**
+ 权限提示alert，两个按钮
+ */
++ (void)alertPromptTips:(NSString *)msg;
 
 /**
  简单弹窗，一个按钮
@@ -46,9 +50,9 @@ typedef void(^TKPermissionBlock)(BOOL isAuth);
 + (void)alertTips:(NSString *)msg;
 
 /**
- 权限提示alert，两个按钮
+ 提示照相机无法使用
  */
-+ (void)alertPromptTips:(NSString *)msg;
++ (void)alertTipsCameraError;
 
 @end
 

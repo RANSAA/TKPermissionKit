@@ -7,7 +7,6 @@
 //
 
 #import "TKPermissionSpeech.h"
-#import "TKPermissionPublic.h"
 #import <Speech/Speech.h>
 
 

@@ -141,6 +141,13 @@
     [self alertTitle:TKPermissionString(@"权限提示") msg:msg leftTitle:TKPermissionString(@"设置") rightTitle:TKPermissionString(@"取消")];
 }
 
+/**
+ 提示照相机无法使用
+ */
++ (void)alertTipsCameraError
+{
+    [self alertTips:TKPermissionString(@"相机无法使用！")];
+}
 
 
 #pragma mark VC
