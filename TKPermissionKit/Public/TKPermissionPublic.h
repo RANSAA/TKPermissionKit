@@ -49,10 +49,6 @@ typedef void(^TKPermissionBlock)(BOOL isAuth);
  */
 + (void)alertTips:(NSString *)msg;
 
-/**
- 提示照相机无法使用
- */
-+ (void)alertTipsCameraError;
 
 @end
 

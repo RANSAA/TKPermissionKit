@@ -31,10 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion;
 
-/**
- 查询是否获取了照相机权限
- **/
+//查询是否获取了照相机权限
 + (BOOL)checkAuth;
+
+//检查前置摄像头是否可用
++ (BOOL)checkCameraFrontAvailableWithAlert:(BOOL)isAlert;
+//检测后置摄像头是否可用
++ (BOOL)checkCameraRearAvailableWithAlert:(BOOL)isAlert;
+//提示照相机无法使用 PS:前置或者后置无法使用就提示
++ (void)alertCameraError;
 
 @end
 

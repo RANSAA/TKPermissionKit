@@ -51,4 +51,47 @@
     return isAuth;
 }
 
+/**
+ 检查前置摄像头是否可用
+ */
++ (BOOL)checkCameraFrontAvailableWithAlert:(BOOL)isAlert
+{
+    BOOL isAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront];
+    if (!isAvailable && isAlert) {
+        [TKPermissionPublic alertTips:TKPermissionString(@"前置摄像头无法使用")];
+    }
+    return isAvailable;
+}
+
+/**
+ 检测后置摄像头是否可用
+ */
++ (BOOL)checkCameraRearAvailableWithAlert:(BOOL)isAlert
+{
+    BOOL isAvailable = [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear];
+    if (!isAvailable && isAlert) {
+        [TKPermissionPublic alertTips:TKPermissionString(@"后置摄像头无法使用")];
+    }
+    return isAvailable;
+}
+
+/**
+ 提示照相机无法使用
+ PS:前置或者后置无法使用就提示
+ */
++ (void)alertCameraError
+{
+    BOOL err = NO;
+    BOOL isRear =  [TKPermissionCamera checkCameraRearAvailableWithAlert:NO];
+    BOOL isFront = [TKPermissionCamera checkCameraFrontAvailableWithAlert:NO];
+    if (!isRear || isFront) {
+        err = YES;
+    }
+    if (err) {
+        [TKPermissionPublic alertTips:TKPermissionString(@"相机无法使用")];
+    }
+}
+
+
+
 @end
