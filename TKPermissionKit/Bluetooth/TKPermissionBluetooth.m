@@ -59,6 +59,7 @@
             code = [CBManager authorization];
         } else {
             code = [CBPeripheralManager authorizationStatus];
+            if (code ==0) {code = 3;}// iOS 11 蓝牙可正常使用 status=0
         }
     } else {
         code = [CBPeripheralManager authorizationStatus];
