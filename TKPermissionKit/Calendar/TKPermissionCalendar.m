@@ -7,11 +7,13 @@
 //
 
 #import "TKPermissionCalendar.h"
-#import "TKPermissionPublic.h"
 #import <EventKit/EventKit.h>
 
 
 @implementation TKPermissionCalendar
+
+static bool safeLock = NO;//防止连续请求lock
+
 
 + (void)jumpSetting
 {
@@ -25,6 +27,11 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     EKEventStore *store = [[EKEventStore alloc] init];
     [store requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -36,6 +43,8 @@
                 }
                 completion(NO);
             }
+
+            safeLock = NO;
         });
     }];
 }

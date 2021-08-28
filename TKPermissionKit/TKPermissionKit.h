@@ -7,14 +7,17 @@
 //
 
 /**
- 对应权限描述都在对应模块中的头文件中
+ AppleTV:
+ NSVideoSubscriberAccountUsageDescription                 需要您的同意，才能访问AppleTV
+ */
+
+//! Project version number for TKPermissionKit.
+FOUNDATION_EXPORT double TKPermissionKitVersionNumber;
+
+//! Project version string for TKPermissionKit.
+FOUNDATION_EXPORT const unsigned char TKPermissionKitVersionString[];
 
 
- 其它权限描述:
- Privacy - Siri Usage Description                                   需要您的同意，才能访问Siri
- Privacy - TV Provider Usage Description                            需要您的同意，才能访问AppleTV
-
- **/
 
 #ifndef TKPermissionKit_h
 #define TKPermissionKit_h
@@ -37,6 +40,8 @@
 #import "TKPermissionMotion.h"
 #import "TKPermissionNotification.h"
 #import "TKPermissionFolders.h"
+#import "TKPermissionTracking.h"
+#import "TKPermissionSiri.h"
 
 
 

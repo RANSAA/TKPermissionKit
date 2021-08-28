@@ -7,11 +7,12 @@
 //
 
 #import "TKPermissionMedia.h"
-#import "TKPermissionPublic.h"
 #import <MediaPlayer/MediaPlayer.h>
 
 
 @implementation TKPermissionMedia
+
+static bool safeLock = NO;//防止连续请求lock
 
 + (void)jumpSetting
 {
@@ -25,6 +26,11 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     if (@available(iOS 9.3, *)) {
         [MPMediaLibrary requestAuthorization:^(MPMediaLibraryAuthorizationStatus status) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -36,11 +42,13 @@
                     }
                     completion(NO);
                 }
+                safeLock = NO;
             });
         }];
     } else {
         NSLog(@"当前系统版本低于iOS9.3，直接返回获取到了权限（如果有问题请更改权限获取方式！）");
         completion(YES);
+        safeLock = NO;
     }
 }
 

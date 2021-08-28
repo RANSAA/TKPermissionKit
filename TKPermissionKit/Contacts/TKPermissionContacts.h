@@ -13,19 +13,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  功能：通讯录权限获取与请求
- 要求：iOS2.0+
+ 要求：iOS9.0+ ， 低于iOS9.0直接返回YES
  注意：本工具中使用了两个系统框架进行权限获取，他们分别是：
     <Contacts/Contacts.h>           9.0+
 
-    <AddressBook/AddressBook.h>     < 9.0  已经移出
- ⚠️⚠️⚠️如果APP审核时出现AddressBook被弃用，拒绝APP时，请自行移出<AddressBook/AddressBook.h> 相关代码
 
+    <AddressBook/AddressBook.h>     < 9.0  已经注释相关代码
+ ⚠️ PS:AddressBook方式如果不被Appstore拒绝，可以直接进入该文件打开注释即可
 
- PS:AddressBook方式如果不被Appstore拒绝，可以直接进入该文件打开注释即可
 
 
  权限描述:
- Privacy - Contacts Usage Description                               需要您的同意，才能访问通讯录
+ NSContactsUsageDescription           需要您的同意，才能访问通讯录
+
+
 
 
  **/

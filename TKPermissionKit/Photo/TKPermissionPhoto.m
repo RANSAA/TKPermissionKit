@@ -7,11 +7,12 @@
 //
 
 #import "TKPermissionPhoto.h"
-#import "TKPermissionPublic.h"
 #import <Photos/Photos.h>
 
 
 @implementation TKPermissionPhoto
+
+static bool safeLock = NO;//防止连续请求lock
 
 + (void)jumpSetting
 {
@@ -25,19 +26,67 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
-    [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (status == PHAuthorizationStatusAuthorized) {
-                completion(YES);
+    [self authWithAlert:isAlert level:TKPhotoAccessLevelReadWrite completion:completion];
+}
+
+/**
+ 请求相册权限
+ isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
+ level:   相册访问限制权限
+ isAuth:  回调，用户是否申请权限成功！
+ PS:获取相册的读写权限/只添加权限由level决定
+ **/
++ (void)authWithAlert:(BOOL)isAlert level:(TKPhotoAccessLevel)level completion:(void(^)(BOOL isAuth))completion
+{
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
+    if(@available(iOS 14.0, *)){
+        PHAccessLevel type = PHAccessLevelReadWrite;
+        if (level == TKPhotoAccessLevelOnlyAdd) {
+            type = PHAccessLevelAddOnly;
+        }
+        [PHPhotoLibrary requestAuthorizationForAccessLevel:type handler:^(PHAuthorizationStatus status) {
+            [self handler:status Alert:isAlert completion:completion];
+        }];
+    }else{
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            [self handler:status Alert:isAlert completion:completion];
+        }];
+    }
+}
+
+
+
++ (void)handler:(PHAuthorizationStatus)status Alert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (status == PHAuthorizationStatusAuthorized) {
+            completion(YES);
+        }else{
+            if (@available(iOS 14.0, *)) {
+                if (status == PHAuthorizationStatusLimited) {
+                    completion(YES);
+                }else{
+                    if (isAlert) {
+                        [self jumpSetting];
+                    }
+                    completion(NO);
+                }
             }else{
                 if (isAlert) {
                     [self jumpSetting];
                 }
                 completion(NO);
             }
-        });
-    }];
+        }
+        safeLock = NO;
+    });
 }
+
+
 
 /**
  查询是否获取了相册权限
@@ -47,6 +96,11 @@
     BOOL isAuth = NO;
     if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
         isAuth = YES;
+    }
+    if(@available(iOS 14.0, *)){
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusLimited) {
+            isAuth = YES;
+        }
     }
     return isAuth;
 }

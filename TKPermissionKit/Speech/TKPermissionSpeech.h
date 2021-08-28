@@ -14,10 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  功能：Speech 语音识别权限获取与请求
  要求：iOS10.0+
- 注意：Speech语音识别功能要求iOS10.0+
+ 注意：Speech语音识别功能要求iOS10.0+, 低于iOS10直接返回NO
 
  权限描述:
- Privacy - Speech Recognition Usage Description                     需要您的同意，才能访问语音识别
+ NSSpeechRecognitionUsageDescription            需要您的同意，才能访问语音识别
  
  **/
 

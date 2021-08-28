@@ -3,4 +3,102 @@
    uuid = "6ECE4ED3-64F0-40C5-A9AF-9876557962D8"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D73C37C7-5495-418A-8B8E-D038E8D6D373"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TKPermissionKitDemo/ListViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D73C37C7-5495-418A-8B8E-D038E8D6D373 - d823883dcb5412ba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ListViewController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "TKPermissionKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/D/Remote/TKPermissionKit/TKPermissionKitDemo/ListViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "153"
+                  endingLineNumber = "153"
+                  offsetFromSymbolStart = "892">
+               </Location>
+               <Location
+                  uuid = "D73C37C7-5495-418A-8B8E-D038E8D6D373 - 4ff25fe461069f11"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[ListViewController tableView:didSelectRowAtIndexPath:]_block_invoke_5"
+                  moduleName = "TKPermissionKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/D/Remote/TKPermissionKit/TKPermissionKitDemo/ListViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DF93C9D2-B830-4DEB-AD8D-B026B0C11B3F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TKPermissionKitDemo/ListViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DF93C9D2-B830-4DEB-AD8D-B026B0C11B3F - d823883dcb541136"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ListViewController tableView:didSelectRowAtIndexPath:]"
+                  moduleName = "TKPermissionKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/D/Remote/TKPermissionKit/TKPermissionKitDemo/ListViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "157"
+                  endingLineNumber = "157"
+                  offsetFromSymbolStart = "1164">
+               </Location>
+               <Location
+                  uuid = "DF93C9D2-B830-4DEB-AD8D-B026B0C11B3F - 4ff25fe4610667bb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__56-[ListViewController tableView:didSelectRowAtIndexPath:]_block_invoke_6"
+                  moduleName = "TKPermissionKit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/D/Remote/TKPermissionKit/TKPermissionKitDemo/ListViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -7,11 +7,12 @@
 //
 
 #import "TKPermissionCamera.h"
-#import "TKPermissionPublic.h"
 #import <AVFoundation/AVFoundation.h>
 
 
 @implementation TKPermissionCamera
+
+static bool safeLock = NO;//防止连续请求lock
 
 + (void)jumpSetting
 {
@@ -25,6 +26,11 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (granted) {
@@ -35,6 +41,7 @@
                 }
                 completion(NO);
             }
+            safeLock = NO;
         });
     }];
 }

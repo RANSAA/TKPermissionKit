@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "TKPermissionPublic.h"
 
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
+
+
 NS_ASSUME_NONNULL_BEGIN
 
 
@@ -29,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  isAuth:  回调，用户是否申请权限成功！
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion;
+
 
 @end
 

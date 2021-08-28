@@ -15,7 +15,7 @@
 
 
  权限描述:
- Privacy - Media Library Usage Description                          需要您的同意，才能访问媒体与Apple Music
+ NSAppleMusicUsageDescription        需要您的同意，才能访问媒体与Apple Music   
 
  **/
 

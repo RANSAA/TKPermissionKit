@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
  权限描述:
- Privacy - Reminders Usage Description                              需要您的同意，才能访问提醒事项
+ NSRemindersUsageDescription            需要您的同意，才能访问提醒事项
 
  **/
 

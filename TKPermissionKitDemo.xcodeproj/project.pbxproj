@@ -31,9 +31,9 @@
 		04CDB362230A4D9C00E86E38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB360230A4D9C00E86E38 /* LaunchScreen.storyboard */; };
 		04CDB365230A4D9C00E86E38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB364230A4D9C00E86E38 /* main.m */; };
 		04CDB374230A526600E86E38 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB373230A526600E86E38 /* ListViewController.m */; };
-		3F722D9A24E40547005875B7 /* TKPermissionLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722D9924E40547005875B7 /* TKPermissionLocationManager.m */; };
 		3F722D9E24E43F34005875B7 /* TKPermissionFolders.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722D9D24E43F34005875B7 /* TKPermissionFolders.m */; };
-		3FF4C15824DE889600ED7B67 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 049796862330C8850049B11C /* MapKit.framework */; };
+		3FC6CD8B26D94FB2000A7DC4 /* TKPermissionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6CD8A26D94FB2000A7DC4 /* TKPermissionTracking.m */; };
+		3FC6CD9126D95986000A7DC4 /* TKPermissionSiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6CD9026D95986000A7DC4 /* TKPermissionSiri.m */; };
 		3FF4C16D24DE8D1C00ED7B67 /* TKPermissionKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3FF4C16C24DE8D1C00ED7B67 /* TKPermissionKit.bundle */; };
 /* End PBXBuildFile section */
 
@@ -88,10 +88,12 @@
 		04CDB364230A4D9C00E86E38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04CDB372230A526600E86E38 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		04CDB373230A526600E86E38 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
-		3F722D9824E40547005875B7 /* TKPermissionLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionLocationManager.h; sourceTree = "<group>"; };
-		3F722D9924E40547005875B7 /* TKPermissionLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionLocationManager.m; sourceTree = "<group>"; };
 		3F722D9C24E43F34005875B7 /* TKPermissionFolders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionFolders.h; sourceTree = "<group>"; };
 		3F722D9D24E43F34005875B7 /* TKPermissionFolders.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionFolders.m; sourceTree = "<group>"; };
+		3FC6CD8926D94FB2000A7DC4 /* TKPermissionTracking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionTracking.h; sourceTree = "<group>"; };
+		3FC6CD8A26D94FB2000A7DC4 /* TKPermissionTracking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionTracking.m; sourceTree = "<group>"; };
+		3FC6CD8F26D95986000A7DC4 /* TKPermissionSiri.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionSiri.h; sourceTree = "<group>"; };
+		3FC6CD9026D95986000A7DC4 /* TKPermissionSiri.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionSiri.m; sourceTree = "<group>"; };
 		3FD7730524E293B100732F40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3FD7730624E293B100732F40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FF4C16C24DE8D1C00ED7B67 /* TKPermissionKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TKPermissionKit.bundle; sourceTree = "<group>"; };
@@ -102,7 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FF4C15824DE889600ED7B67 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +315,8 @@
 		04CDB36B230A4DF300E86E38 /* TKPermissionKit */ = {
 			isa = PBXGroup;
 			children = (
+				3FC6CD8E26D9596D000A7DC4 /* Siri */,
+				3FC6CD8826D94F6D000A7DC4 /* Tracking */,
 				04B5C55E2350546600284691 /* Bluetooth */,
 				04B5C5442350105400284691 /* Calendar */,
 				04B5C53F23500FE800284691 /* Camera */,
@@ -322,7 +325,6 @@
 				04B5C57423507EA000284691 /* Health */,
 				044B6D7023516B6C00F13358 /* Home */,
 				04B5C5572350292500284691 /* LocationAlways */,
-				3F722D9724E404F3005875B7 /* LocationBase */,
 				04B5C5422350102600284691 /* LocationWhen */,
 				04B5C54023500FFD00284691 /* Media */,
 				04B5C5412350100F00284691 /* Microphone */,
@@ -338,15 +340,6 @@
 			path = TKPermissionKit;
 			sourceTree = SOURCE_ROOT;
 		};
-		3F722D9724E404F3005875B7 /* LocationBase */ = {
-			isa = PBXGroup;
-			children = (
-				3F722D9824E40547005875B7 /* TKPermissionLocationManager.h */,
-				3F722D9924E40547005875B7 /* TKPermissionLocationManager.m */,
-			);
-			path = LocationBase;
-			sourceTree = "<group>";
-		};
 		3F722D9B24E43D31005875B7 /* FileAndFolders */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +347,24 @@
 				3F722D9D24E43F34005875B7 /* TKPermissionFolders.m */,
 			);
 			path = FileAndFolders;
+			sourceTree = "<group>";
+		};
+		3FC6CD8826D94F6D000A7DC4 /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				3FC6CD8926D94FB2000A7DC4 /* TKPermissionTracking.h */,
+				3FC6CD8A26D94FB2000A7DC4 /* TKPermissionTracking.m */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
+		3FC6CD8E26D9596D000A7DC4 /* Siri */ = {
+			isa = PBXGroup;
+			children = (
+				3FC6CD8F26D95986000A7DC4 /* TKPermissionSiri.h */,
+				3FC6CD9026D95986000A7DC4 /* TKPermissionSiri.m */,
+			);
+			path = Siri;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,7 +393,7 @@
 		04CDB34A230A4D9B00E86E38 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = mac;
 				TargetAttributes = {
 					04CDB351230A4D9B00E86E38 = {
@@ -448,6 +459,7 @@
 				044B6D772351724600F13358 /* TKPermissionMotion.m in Sources */,
 				044B6D7323516B9B00F13358 /* TKPermissionHome.m in Sources */,
 				04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */,
+				3FC6CD9126D95986000A7DC4 /* TKPermissionSiri.m in Sources */,
 				04B5C55023501FD500284691 /* TKPermissionCamera.m in Sources */,
 				04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */,
 				04B5C5702350734C00284691 /* TKPermissionContacts.m in Sources */,
@@ -460,12 +472,12 @@
 				04B5C55D23504FA700284691 /* TKPermissionLocationWhen.m in Sources */,
 				04CDB374230A526600E86E38 /* ListViewController.m in Sources */,
 				04B5C5612350548900284691 /* TKPermissionBluetooth.m in Sources */,
+				3FC6CD8B26D94FB2000A7DC4 /* TKPermissionTracking.m in Sources */,
 				04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */,
 				04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */,
 				04CDB365230A4D9C00E86E38 /* main.m in Sources */,
 				04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */,
 				3F722D9E24E43F34005875B7 /* TKPermissionFolders.m in Sources */,
-				3F722D9A24E40547005875B7 /* TKPermissionLocationManager.m in Sources */,
 				04B5C56D2350718E00284691 /* TKPermissionReminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +531,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -579,6 +592,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -615,12 +629,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.TKPermissionKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -636,12 +650,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.TKPermissionKitDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

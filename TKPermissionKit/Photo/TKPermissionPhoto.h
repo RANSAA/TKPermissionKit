@@ -12,11 +12,25 @@
 /**
  功能：相册权限获取与请求
  要求：iOS8.0+
+ 注意：iOS14新增相册有效的访问权限
 
 
  权限描述:
- Privacy - Photo Library Usage Description                          需要您的同意，才能访问相册
- Privacy - Photo Library Additions Usage Description (添加照片)       需要您的同意，才能添加照片
+ NSPhotoLibraryUsageDescription             需要您的同意，才能访问相册   
+ NSPhotoLibraryAddUsageDescription          需要您的同意，才能添加照片
+
+
+
+
+  iOS14 中当用户选择
+ “PHAuthorizationStatusLimited” 时，如果未进行适配，有可能会在每次触发相册功能时都进行弹窗询问用户是否需要修改照片权限。
+
+  对于这种情况可通过在 Info.plist 中设置
+ “PHPhotoLibraryPreventAutomaticLimitedAccessAlert”的值为 YES 来阻止该弹窗反复弹出;
+ 并且可通过下面这个 API 来主动控制何时弹出PHPickerViewController 进行照片选择:
+ :
+    [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:self];
+
 
  **/
 
@@ -25,17 +39,39 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TKPermissionPhoto : NSObject
 
+
+//ios14 新增相册访问限制权限
+typedef NS_ENUM(NSInteger, TKPhotoAccessLevel){
+    TKPhotoAccessLevelReadWrite = 0,    //获取全部的相册读写权限
+    TKPhotoAccessLevelOnlyAdd           //只获取向相册中添加权限
+};
+
+
 /**
  请求相册权限
  isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
+ level:   相册访问限制权限
  isAuth:  回调，用户是否申请权限成功！
+ PS:获取相册的读写权限/只添加权限由level决定
+ **/
++ (void)authWithAlert:(BOOL)isAlert level:(TKPhotoAccessLevel)level completion:(void(^)(BOOL isAuth))completion ;
+
+
+/**
+ 请求相册权限, 优先使用+authWithAlert:level:completion:
+ isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
+ isAuth:  回调，用户是否申请权限成功！
+ PS:获取全部的相册读写权限 ,Default:TKPhotoAccessLevelReadWrite
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion;
+
 
 /**
  查询是否获取了相册权限
  **/
 + (BOOL)checkAuth;
+
+
 
 @end
 

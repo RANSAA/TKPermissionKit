@@ -12,6 +12,9 @@
 
 @implementation TKPermissionSpeech
 
+static bool safeLock = NO;//防止连续请求lock
+
+
 + (void)jumpSetting
 {
     [TKPermissionPublic alertPromptTips:TKPermissionString(@"使用语音识别功能时需要您提供权限，去设置!")];
@@ -29,6 +32,11 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     if (@available(iOS 10.0, *)) {
         [SFSpeechRecognizer requestAuthorization:^(SFSpeechRecognizerAuthorizationStatus status) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -40,11 +48,14 @@
                     }
                     completion(NO);
                 }
+                safeLock = NO;
             });
         }];
     } else {
         [self alertAction];
         completion(NO);
+        
+        safeLock = NO;
     }
 }
 
@@ -59,6 +70,7 @@
             isAuth = YES;
         }
     } else {
+        isAuth = NO;
         NSLog(@"⚠️⚠️⚠️要使用语音识别功能，系统版本需要iOS10及以上！");
     }
     return isAuth;

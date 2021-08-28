@@ -7,28 +7,19 @@
 //
 
 #import "TKPermissionHome.h"
-#import "TKPermissionPublic.h"
 #import <HomeKit/HomeKit.h>
 
 @interface TKPermissionHome ()<HMHomeManagerDelegate>
 @property (nonatomic, strong) HMHomeManager *homeManager;
 @property (nonatomic, copy  ) TKPermissionBlock block;
 @property (nonatomic, assign) BOOL isAlert;
+
+@property (class, nonatomic, strong, readonly) TKPermissionHome *shared;
+
 @end
 
 @implementation TKPermissionHome
 
-+ (instancetype)shared
-{
-    static dispatch_once_t onceToken;
-    static id obj = nil;
-    dispatch_once(&onceToken, ^{
-        NSString *name = [NSString stringWithFormat:@"%@",self.class];
-        Class class = NSClassFromString(name);
-        obj = [[class alloc] init];
-    });
-    return obj;
-}
 
 - (void)jumpSetting
 {
@@ -44,6 +35,15 @@
     return name;
 }
 
+static TKPermissionHome * _shared = nil;
++ (TKPermissionHome *)shared
+{
+    if (!_shared) {
+        _shared = [[TKPermissionHome alloc] init];
+    }
+    return _shared;
+}
+
 - (HMHomeManager *)homeManager
 {
     if (!_homeManager) {
@@ -57,15 +57,15 @@
  isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
  isAuth:  回调，用户是否申请权限成功！
  **/
-- (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
++ (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
-    self.block = completion;
-    self.isAlert = isAlert;
-    self.homeManager.delegate = self;
+    TKPermissionHome *obj = self.shared;
+    obj.block = completion;
+    obj.isAlert = isAlert;
+    obj.homeManager.delegate = obj;
 
-    if (@available(iOS 13.0, *)) {
-        [self checkAuth];
-    } else {
+    if (@available(iOS 13.0, *)) {//低于iOS13是在Delegate中获取权限状态的
+        [obj checkAuth];
     }
 }
 

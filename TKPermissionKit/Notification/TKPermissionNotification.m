@@ -7,15 +7,13 @@
 //
 
 #import "TKPermissionNotification.h"
-#import "TKPermissionPublic.h"
-
-#ifdef NSFoundationVersionNumber_iOS_9_x_Max
-#import <UserNotifications/UserNotifications.h>
-#endif
 
 
 
 @implementation TKPermissionNotification
+
+static bool safeLock = NO;//防止连续请求lock
+
 
 + (void)jumpSetting
 {
@@ -29,10 +27,15 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     UIApplication *application = [UIApplication sharedApplication];
     if (@available(iOS 10.0, *)) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        UNAuthorizationOptions types=UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+        UNAuthorizationOptions types = UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
         [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (granted) {
@@ -46,17 +49,18 @@
                     }
                     completion(NO);
                 }
+                safeLock = NO;
             });
         }];
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
-        [application registerUserNotificationSettings:
-         [UIUserNotificationSettings settingsForTypes:
-          (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
-                                           categories:nil]];
+        UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
         completion(YES);
+        safeLock = NO;
     }
 #pragma clang diagnostic pop
 }

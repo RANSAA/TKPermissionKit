@@ -15,7 +15,7 @@
 
 
  权限描述:
- Privacy - Camera Usage Description                                 需要您的同意，才能访问相机
+ NSCameraUsageDescription          需要您的同意，才能访问相机      
 
  **/
 
@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //查询是否获取了照相机权限
 + (BOOL)checkAuth;
+
 
 //检查前置摄像头是否可用
 + (BOOL)checkCameraFrontAvailableWithAlert:(BOOL)isAlert;

@@ -7,7 +7,6 @@
 //
 
 #import "TKPermissionNetWork.h"
-#import "TKPermissionPublic.h"
 #import <CoreTelephony/CTCellularData.h>
 
 

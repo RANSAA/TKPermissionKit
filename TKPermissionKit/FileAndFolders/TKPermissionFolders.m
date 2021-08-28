@@ -7,7 +7,6 @@
 //
 
 #import "TKPermissionFolders.h"
-#import "TKPermissionPublic.h"
 
 
 @implementation TKPermissionFolders

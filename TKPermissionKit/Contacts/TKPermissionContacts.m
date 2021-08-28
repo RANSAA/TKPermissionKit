@@ -7,11 +7,12 @@
 //
 
 #import "TKPermissionContacts.h"
-#import "TKPermissionPublic.h"
 #import <Contacts/Contacts.h>
 //#import <AddressBook/AddressBook.h>
 
 @implementation TKPermissionContacts
+
+static bool safeLock = NO;//防止连续请求lock
 
 + (void)jumpSetting
 {
@@ -25,6 +26,11 @@
  **/
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
+    if (safeLock) {
+        return;
+    }
+    safeLock = YES;
+
     if (@available(iOS 9.0, *)) {
         CNContactStore *contactStore = [[CNContactStore alloc] init];
         [contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -37,6 +43,8 @@
                     }
                     completion(NO);
                 }
+
+                safeLock = NO;
             });
         }];
     } else {
@@ -53,6 +61,9 @@
 //                }
 //            });
 //        });
+
+        completion(YES);
+        safeLock = NO;
     }
 }
 
@@ -71,6 +82,7 @@
 //        if (status == kABAuthorizationStatusAuthorized) {
 //            isAuth = YES;
 //        }
+        isAuth = YES;
     }
     return isAuth;
 }

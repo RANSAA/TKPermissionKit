@@ -29,8 +29,6 @@
 /** 直接从bundle文件中读取指定string，而获取国际化字符串*/
 + (NSString *)localizedStringForKey:(NSString *)key tab:(NSString *)tab
 {
-//    NSString *ls1 = NSLocalizedStringFromTableInBundle(key, tab, [self TKPermissionBundle] , nil);
-
     NSString *value = [[self lprojBundle] localizedStringForKey:key value:nil table:tab];
     return value;
 }
@@ -60,13 +58,13 @@
                   } else { // zh-Hant\zh-HK\zh-TW
                       language = @"zh-Hant"; // 繁體中文
                   }
-              } else if ([language hasPrefix:@"ko"]) {
+              } else if ([language hasPrefix:@"ko"]) {//韩语
                   language = @"ko";
-              } else if ([language hasPrefix:@"ru"]) {
+              } else if ([language hasPrefix:@"ru"]) {//俄语
                   language = @"ru";
-              } else if ([language hasPrefix:@"uk"]) {
+              } else if ([language hasPrefix:@"uk"]) {//乌克兰
                   language = @"uk";
-              } else if ([language hasPrefix:@"ja"]) {
+              } else if ([language hasPrefix:@"ja"]) {//日语
                   language = @"ja";
               } else {
                   language = @"zh-Hans";

@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
  权限描述:
- Privacy - Calendars Usage Description                              需要您的同意，才能访问日历
+ NSCalendarsUsageDescription            需要您的同意，才能访问日历
 
 
  **/

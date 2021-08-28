@@ -7,7 +7,7 @@
 #
 
 name      = "TKPermissionKit"
-version   = "1.2.2"
+version   = "1.2.3"
 homepage  = "https://github.com/RANSAA/TKPermissionKit"
 
 
@@ -80,15 +80,15 @@ spec.subspec 'Microphone' do |ss|
 end
 
 spec.subspec 'LocationWhen' do |ss|
-  ss.source_files         = "#{name}/LocationWhen/#{file_source}",  "#{name}/LocationBase/#{file_source}"
-  ss.public_header_files  = "#{name}/LocationWhen/#{file_header}",  "#{name}/LocationBase/#{file_header}"
+  ss.source_files         = "#{name}/LocationWhen/#{file_source}"
+  ss.public_header_files  = "#{name}/LocationWhen/#{file_header}"
   ss.ios.frameworks       = "CoreLocation"
   ss.dependency "#{public_base}"
 end
 
 spec.subspec 'LocationAlways' do |ss|
-  ss.source_files         = "#{name}/LocationAlways/#{file_source}", "#{name}/LocationBase/#{file_source}"
-  ss.public_header_files  = "#{name}/LocationAlways/#{file_header}", "#{name}/LocationBase/#{file_header}"
+  ss.source_files         = "#{name}/LocationAlways/#{file_source}"
+  ss.public_header_files  = "#{name}/LocationAlways/#{file_header}"
   ss.ios.frameworks       = "CoreLocation"
   ss.dependency "#{public_base}"
 end
@@ -157,11 +157,27 @@ spec.subspec 'Health' do |ss|
   ss.dependency "#{public_base}"
 end
 
-  spec.subspec 'FileAndFolders' do |ss|
+spec.subspec 'FileAndFolders' do |ss|
   ss.source_files         = "#{name}/FileAndFolders/#{file_source}"
   ss.public_header_files  = "#{name}/FileAndFolders/#{file_header}"
   ss.dependency "#{public_base}"
 end
+
+spec.subspec 'Tracking' do |ss|
+  ss.source_files         = "#{name}/Tracking/#{file_source}"
+  ss.public_header_files  = "#{name}/Tracking/#{file_header}"
+  ss.ios.frameworks       = 'AppTrackingTransparency', 'AdSupport'
+  ss.dependency "#{public_base}"
+end
+
+spec.subspec 'Siri' do |ss|
+  ss.source_files         = "#{name}/Siri/#{file_source}"
+  ss.public_header_files  = "#{name}/Siri/#{file_header}"
+  ss.ios.frameworks       = "Intents"
+  ss.dependency "#{public_base}"
+end
+
+
 
 
 end

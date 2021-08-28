@@ -32,12 +32,17 @@
 "请先到\"隐私\"中，开启定位服务！" = "Please go to \"Privacy\" first to enable location service!";
 "访问住宅数据时需要您提供权限，去设置！" = "When accessing residential data, you need to provide permission to set it up!";
 "当前设备不支持HealthKit" = "The current device does not support HealthKit";
-"访问Health时需要提供权限，请打开\"健康\"，为\"%@\"设置权限！" = "You need to provide permissions when accessing Health, please open \"Health\" and set permissions for \"%@\"!";
+
+"您可以稍后在\"健康\"App中打开健康数据类别。" = "You can open the health data category in the \"Health\" App later.";
+
 "访问通讯录时需要您提供权限，去设置!" = "You need to provide permission to access the address book, go to set!";
 "使用日历时需要您提供权限，去设置!" = "You need to provide permission when using the calendar, go to set!";
-"访问蓝牙时需要您提供权限，请开启\"蓝牙共享\"" = "You need to provide permission when accessing Bluetooth, please turn on \"Bluetooth Sharing\"";
+"访问蓝牙时需要您提供权限，去设置！" = "You need to provide permission when accessing Bluetooth, go to set up!";
 "文件与文件夹访问权限不需要请求，直接在info文件中添加描述即可!" = "File and folder access permissions do not need to be requested, just add a description in the info file!";
 
 "相机无法使用" = "Camera not available";
 "前置摄像头无法使用" = "Front camera not available";
 "后置摄像头无法使用" = "Rear camera not available";
+
+"访问Siri时需要您提供权限，去设置!" = "You need to provide permission when accessing Siri, go to set up!";
+"当前系统不支持Siri" = "The current system does not support Siri";

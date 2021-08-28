@@ -1,7 +1,10 @@
 # TKPermissionKit
 
 #### 介绍
-TKPermissionKit应用权限获取
+TKPermissionKit是一款好用的iOS权限请求与检测工具！
+
+
+#### [Swift版本](https://github.com/lixiang1994/PermissionKit)
 
 
 #### 权限支持
@@ -12,16 +15,18 @@ TKPermissionKit应用权限获取
 *  麦克风
 *  定位-始终使用
 *  定位-使用期间
+*  通知
 *  语音识别
 *  日历
 *  通讯录
 *  提醒事项
-*  推送
-*  应用联网权限检测
-*  家庭HomeKit
-*  运动与健身   PS:iOS11.0+回调才会有权限成功与失败状态，小于iOS11的版本也能请求到权限，但是不会回调(即不能检测到授权状态，只能弹出授权alert)
-*  健康Health    PS:由于健康中的数据类型很多，并且都需要相关权限所以，不建议使用，用户可以根据该框架进行仿照以达到实际要求
-*  Files
+*  应用联网权限检测     ⚠️：无效，可以使用ZYNetworkAccessibility检测
+*  健康Health         ⚠️：只能检测"写入数据"类别中的type
+*  运动与健身          ⚠️：iOS11.0+回调才会有权限成功与失败状态，小于iOS11的版本也能请求到权限，但是不会回调(即不能检测到授权状态，只能弹出授权alert)
+*  HomeKit
+*  文件与文件夹
+*  AppTrackingTransparency
+*  Siri
 
 
 
@@ -49,11 +54,13 @@ pod 'TKPermissionKit/NetWork'               #网路--
 pod 'TKPermissionKit/Motion'                #运动于健身
 pod 'TKPermissionKit/Home'                  #homeKit
 pod 'TKPermissionKit/Health'                #健康
-pod 'TKPermissionKit/FileAndFolders'        #文件
+pod 'TKPermissionKit/FileAndFolders'        #文件与文件夹
+pod 'TKPermissionKit/Tracking'              #AppTrackingTransparency
+pod 'TKPermissionKit/Siri'                  #Siri
 ```
 
 #### 使用方法
-1.直接调用类方法
+1.直接调用类方法如：
 
 ```
 [TKPermissionPhoto authWithAlert:YES completion:^(BOOL isAuth) {
@@ -65,19 +72,8 @@ pod 'TKPermissionKit/FileAndFolders'        #文件
 }];
 ```
 
-2.调用单利中的方法
 
-```
-[[TKPermissionBluetooth shared] authWithAlert:YES completion:^(BOOL isAuth) {
-    if (isAuth) {
-        NSLog(@"蓝牙权限获取成功！");
-    }else{
-        NSLog(@"蓝牙权限获取失败");
-    }
-}];
-```
-
-3.注意
+2.注意
 ```
 completion:^(BOOL isAuth) {
     //这个回调都被切换到了主线程
@@ -88,11 +84,10 @@ completion:^(BOOL isAuth) {
 #### 网络权限的监控和判断
 本框架中的网络检测模块基本上没有作用，可以使用[ZYNetworkAccessibility](https://github.com/ziecho/ZYNetworkAccessibility)
 
-#### 注意
-使用具体模块时，可以查看对应模块头文件中的使用说明与注意事项！
+#### 使用说明与注意事项
+使用具体模块时，可以查看对应模块**头文件**中的使用说明与注意事项！
 
 #### 其它
-1. https://github.com/EchoZuo/ECAuthorizationTools
-2. https://github.com/skooal/PrivacyPermission
-3. https://github.com/lixiang1994/PermissionKit    (swift) 它的设计模式可以学一学
+1. https://github.com/lixiang1994/PermissionKit   
+2. https://github.com/EchoZuo/ECAuthorizationTools
 

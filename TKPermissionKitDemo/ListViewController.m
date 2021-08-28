@@ -8,6 +8,9 @@
 
 #import "ListViewController.h"
 #import "TKPermissionKit.h"
+#import <CoreLocation/CoreLocation.h>
+
+
 
 
 
@@ -22,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.title = @"TKPermissionKit";
     [self instanceSubView];
 
 
@@ -33,23 +37,25 @@
 
 - (void)instanceSubView
 {
-    self.aryTitle= @[@"打开相册权限",
-                     @"打开相机权限",
-                     @"打开媒体资料库权限",
-                     @"打开蓝牙权限 ",
-                     @"打开麦克风权限",
-                     @"打开位置权限-使用期间 ",
-                     @"打开位置权限-始终使用 ",
-                     @"打开推送权限",
-                     @"打开语音识别权限 ",
-                     @"打开日历权限",
-                     @"打开通讯录权限 ",
-                     @"打开提醒事项权限",
-                     @"打开移动网络权限   ⚠️没有作用",
-                     @"打开健康Health权限  ",
-                     @"打开运动与健身权限 ",
-                     @"打开HomeKit权限    ",
-                     @"打开文件与文件夹"
+    self.aryTitle= @[@"请求相册权限",
+                     @"请求相机权限",
+                     @"请求媒体资料库权限",
+                     @"请求蓝牙权限 ",
+                     @"请求麦克风权限",
+                     @"请求位置权限-使用期间 ",
+                     @"请求位置权限-始终使用 ",
+                     @"请求推送权限",
+                     @"请求语音识别权限 ",
+                     @"请求日历权限",
+                     @"请求通讯录权限 ",
+                     @"请求提醒事项权限",
+                     @"请求移动网络权限      ⚠️ 没有作用 \n 可以使用ZYNetworkAccessibility检测",
+                     @"请求健康Health权限 \n⚠️:只能检测\"写入数据\"类别中的type",
+                     @"请求运动与健身权限 ",
+                     @"请求HomeKit权限    ",
+                     @"请求文件与文件夹",
+                     @"请求AppTrackingTransparency权限",
+                     @"请求Siri权限 （需要打开添加Siri开关）"
                      ];
     self.tableView.rowHeight = 55;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -67,6 +73,8 @@
     NSInteger row = indexPath.row;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.textLabel.numberOfLines = 2;
     cell.textLabel.text = self.aryTitle[row];
     return cell;
 }
@@ -116,12 +124,13 @@
             break;
         case 3:
         {
-            [[TKPermissionBluetooth shared] authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionBluetooth authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"蓝牙权限获取成功！");
                 }else{
                     NSLog(@"蓝牙权限获取失败");
                 }
+                NSLog(@"isAuth:%d",[TKPermissionBluetooth checkAuth]);
                 [self testAddView];
             }];
         }
@@ -140,19 +149,20 @@
             break;
         case 5:
         {
-            [[TKPermissionLocationWhen shared] authWithAlert:YES completion:^(BOOL isAuth) {
-                if (isAuth) {
-                    NSLog(@"使用<<应用期间>>权限获取成功！");
-                }else{
-                    NSLog(@"使用<<应用期间>>权限获取失败");
-                }
-                [self testAddView];
+            [TKPermissionLocationWhen authWithAlert:YES completion:^(BOOL isAuth) {
+
+                    if (isAuth) {
+                        NSLog(@"使用<<应用期间>>权限获取成功！");
+                    }else{
+                        NSLog(@"使用<<应用期间>>权限获取失败");
+                    }
+                    [self testAddView];
             }];
         }
             break;
         case 6:
         {
-            [[TKPermissionLocationAlways shared] authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionLocationAlways authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"定位<<始终访问>>权限获取成功！");
                 }else{
@@ -231,7 +241,7 @@
 
         case 13:
         {
-            [[TKPermissionHealth shared] authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionHealth  authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"HealthKit权限获取成功！");
 
@@ -244,7 +254,7 @@
             break;
         case 14:
         {
-            [[TKPermissionMotion shared] authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionMotion authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"运动与健身权限获取成功！");
                 }else{
@@ -256,7 +266,7 @@
             break;
         case 15:
         {
-            [[TKPermissionHome shared] authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionHome  authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"HomeKit权限获取成功！");
                 }else{
@@ -270,13 +280,36 @@
         {
             [TKPermissionFolders authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
-                    NSLog(@"打开文件与文件夹成功！");
+                    NSLog(@"请求文件与文件夹成功！");
                 }else{
-                    NSLog(@"打开文件与文件夹失败");
+                    NSLog(@"请求文件与文件夹失败");
                 }
                 [self testAddView];
             }];
         }
+        case 17:
+        {
+            [TKPermissionTracking authWithCompletion:^(BOOL isAuth, NSString * _Nonnull idfa) {
+                if (isAuth) {
+                    NSLog(@"请求AppTrackingTransparency成功！");
+                }else{
+                    NSLog(@"请求AppTrackingTransparency失败");
+                }
+                NSLog(@"isAuth:%d  idaf:%@",isAuth,idfa);
+            }];
+        }
+            break;
+        case 18:
+        {
+            [TKPermissionSiri authWithAlert:YES completion:^(BOOL isAuth) {
+                if (isAuth) {
+                    NSLog(@"请求Siri成功！");
+                }else{
+                    NSLog(@"请求Siri失败");
+                }
+            }];;
+        }
+            break;;
         default:
             break;
     }
@@ -288,10 +321,10 @@
 
 - (void)get
 {
-    NSURL *url = [NSURL URLWithString:@"http://www.cocoachina.com/cms/wap.php?action=article&id=24389"];
+    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLSession *setion = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [setion dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"data");
+        NSLog(@"test networing data");
     }];
     [task resume];
 }
@@ -303,7 +336,7 @@
     vi.backgroundColor = UIColor.purpleColor;
     [self.view addSubview:vi];
     [UIView animateWithDuration:1.0 animations:^{
-        vi.frame = CGRectMake(250, 250, 100, 100);
+        vi.frame = CGRectMake(280, 64, 100, 100);
     }];
 }
 
