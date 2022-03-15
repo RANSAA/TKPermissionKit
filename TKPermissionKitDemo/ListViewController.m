@@ -86,7 +86,7 @@
     switch (row) {
         case 0:
         {
-            [TKPermissionPhoto authWithAlert:YES completion:^(BOOL isAuth) {
+            [TKPermissionPhoto authWithAlert:YES level:TKPhotoAccessLevelReadWrite completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"相册权限获取成功！");
                 }else{
@@ -94,6 +94,18 @@
                 }
                 [self testAddView];
             }];
+
+            if ([TKPermissionPhoto checkAuthWith:TKPhotoAccessLevelOnlyAdd]) {
+                NSLog(@"TKPhotoAccessLevelOnlyAdd -- YES");
+            }else{
+                NSLog(@"TKPhotoAccessLevelOnlyAdd -- NO");
+            }
+
+            if ([TKPermissionPhoto checkAuthWith:TKPhotoAccessLevelReadWrite]) {
+                NSLog(@"TKPhotoAccessLevelReadWrite -- YES");
+            }else{
+                NSLog(@"TKPhotoAccessLevelReadWrite -- NO");
+            }
         }
             break;
         case 1:

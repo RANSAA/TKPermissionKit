@@ -32,7 +32,7 @@ static bool safeLock = NO;//防止连续请求lock
 /**
  请求相册权限
  isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
- level:   相册访问限制权限
+ level:   相册访问权限,限制类型:只读/读写（iOS14+才有效）
  isAuth:  回调，用户是否申请权限成功！
  PS:获取相册的读写权限/只添加权限由level决定
  **/
@@ -90,15 +90,24 @@ static bool safeLock = NO;//防止连续请求lock
 
 /**
  查询是否获取了相册权限
- **/
-+ (BOOL)checkAuth
+ */
++ (BOOL)checkAuthWith:(TKPhotoAccessLevel)level
 {
     BOOL isAuth = NO;
-    if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
-        isAuth = YES;
-    }
-    if(@available(iOS 14.0, *)){
-        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusLimited) {
+    if (@available(iOS 14.0, *)) {
+        if (level == TKPhotoAccessLevelReadWrite) {
+            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelReadWrite];
+            if (status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited) {
+                isAuth = YES;
+            }
+        }else{
+            PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatusForAccessLevel:PHAccessLevelAddOnly];
+            if (status == PHAuthorizationStatusAuthorized || status == PHAuthorizationStatusLimited) {
+                isAuth = YES;
+            }
+        }
+    }else{
+        if ([PHPhotoLibrary authorizationStatus] == PHAuthorizationStatusAuthorized) {
             isAuth = YES;
         }
     }

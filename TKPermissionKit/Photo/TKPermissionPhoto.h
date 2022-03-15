@@ -40,17 +40,17 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TKPermissionPhoto : NSObject
 
 
-//ios14 新增相册访问限制权限
+//相册访问限制权限等级 -> iOS14+才有实际意义
 typedef NS_ENUM(NSInteger, TKPhotoAccessLevel){
-    TKPhotoAccessLevelReadWrite = 0,    //获取全部的相册读写权限
-    TKPhotoAccessLevelOnlyAdd           //只获取向相册中添加权限
+    TKPhotoAccessLevelReadWrite = 0,    //获取全部的相册读写权限   -> PHAccessLevelReadWrite
+    TKPhotoAccessLevelOnlyAdd           //只获取向相册中添加权限   -> PHAccessLevelAddOnly
 };
 
 
 /**
  请求相册权限
  isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
- level:   相册访问限制权限
+ level:   相册访问权限,限制类型:只读/读写（iOS14+才有效）
  isAuth:  回调，用户是否申请权限成功！
  PS:获取相册的读写权限/只添加权限由level决定
  **/
@@ -58,18 +58,9 @@ typedef NS_ENUM(NSInteger, TKPhotoAccessLevel){
 
 
 /**
- 请求相册权限, 优先使用+authWithAlert:level:completion:
- isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
- isAuth:  回调，用户是否申请权限成功！
- PS:获取全部的相册读写权限 ,Default:TKPhotoAccessLevelReadWrite
- **/
-+ (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion;
-
-
-/**
  查询是否获取了相册权限
- **/
-+ (BOOL)checkAuth;
+ */
++ (BOOL)checkAuthWith:(TKPhotoAccessLevel)level;
 
 
 

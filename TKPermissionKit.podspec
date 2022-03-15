@@ -7,7 +7,7 @@
 #
 
 name      = "TKPermissionKit"
-version   = "1.2.3"
+version   = "1.2.4"
 homepage  = "https://github.com/RANSAA/TKPermissionKit"
 
 
