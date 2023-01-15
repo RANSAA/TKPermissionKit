@@ -80,6 +80,12 @@ completion:^(BOOL isAuth) {
 }
 ```
 
+#### 自定义提示信息，Alert与支持更多语言
+1. 自定义(修改)提示信息：直接修改TKPermissionKit.bundle中的InfoPlist.string文件即可。
+2. 支持更多语言：在TKPermissionKit.bundle中添加需要的语言文件即可。
+3. 自定义Alert UI: 只需要实现TKPermissionPublic.shared.blockCustomMsg即可。
+
+
 
 #### 网络权限的监控和判断
 本框架中的网络检测模块基本上没有作用，可以使用[ZYNetworkAccessibility](https://github.com/ziecho/ZYNetworkAccessibility)

@@ -14,12 +14,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 //block认证回调
 typedef void(^TKPermissionBlock)(BOOL isAuth);
+//block自定义提示消息
+typedef void(^TKPermissionCustomMsgBlock)( NSString *_Nullable title, NSString *_Nullable msg, NSString *_Nullable left, NSString *_Nullable right);
+
 //多语言对应字符串获取
 #define TKPermissionString(key) [TKPermissionPublic localizedStringForKey:key tab:@"InfoPlist"]
 
-
 @interface TKPermissionPublic : NSObject
+/**
+ 自定义未授权时，权限提示信息block，如果该属性存在则alertTitleXXX相关方法不执行。
+ */
+@property(nonatomic, copy, nullable) TKPermissionCustomMsgBlock blockCustomMsg;
 
++ (instancetype)shared;
+
+#pragma mark 国际化处理
 /** 直接从bundle文件中读取指定string，而获取国际化字符串*/
 + (NSString *)localizedStringForKey:(NSString *)key tab:(NSString *)tab;
 

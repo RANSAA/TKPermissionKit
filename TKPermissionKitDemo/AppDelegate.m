@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "TKPermissionKit.h"
 
 @interface AppDelegate ()
 
@@ -17,9 +18,51 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self testLang];
+    
+
+    
+//    TKPermissionPublic.shared.blockCustomMsg = ^(NSString * _Nullable title, NSString * _Nullable msg, NSString * _Nullable left, NSString * _Nullable right) {
+//        NSLog(@"title:%@    msg:%@    left:%@     right:%@",title,msg,left,right);
+//    };
+//    TKPermissionPublic.shared.blockCustomMsg = nil;
+    
     return YES;
 }
 
+
+- (void)testLang
+{
+//    NSLog(@"NSLocale: %@",[NSLocale preferredLanguages]);
+//
+//    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+//        return [evaluatedObject hasSuffix:@".lproj"];
+//    }];
+//    NSString *path = TKPermissionPublic.shared.bundlePath;
+//    NSArray *subPaths = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil] filteredArrayUsingPredicate:predicate];
+//    NSLog(@"ary:%@",subPaths);
+//
+//    NSString *systemLanguage = [NSLocale preferredLanguages].firstObject.lowercaseString;
+//    NSString *selectedLanguage = @"zh-Hans";
+//    for (NSString *dirName in subPaths) {
+//        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
+//        NSString *lowerName = [name lowercaseString];
+//        if ([lowerName isEqualToString:systemLanguage]) {
+//            NSLog(@"name:%@      current:%@",lowerName,systemLanguage);
+//            selectedLanguage = name;
+//            break;
+//        }
+//        if ([lowerName containsString:systemLanguage] || [systemLanguage containsString:lowerName]) {
+//            NSLog(@"name:%@      current:%@",lowerName,systemLanguage);
+//            selectedLanguage = name;
+//            break;
+//        }
+//    }
+//
+//    NSLog(@"selectedLanguage:%@",selectedLanguage);
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
