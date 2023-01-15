@@ -49,6 +49,7 @@
     return bundle;
 }
 
+/** 配置.lproj文件 */
 - (NSString *)selectedLanguage
 {
     NSString *selectedLanguage = @"zh-Hans";
@@ -214,21 +215,44 @@
  */
 + (UIWindow*)TK_keyWindow
 {
+//    UIWindow *mainWindow = nil;
+//    if ( @available(iOS 13.0, *) ) {
+//        //如果是多场景，可以遍历windows,检查window.isKeyWindow获取
+//        NSArray *windows = UIApplication.sharedApplication.windows;
+//        for (UIWindow *window in windows) {
+//            if (window.isKeyWindow) {
+//                mainWindow = window;
+//                break;
+//            }
+//        }
+//        if (!mainWindow) {
+//            mainWindow = windows.firstObject;
+//        }
+//    } else {
+//        mainWindow = UIApplication.sharedApplication.keyWindow;
+//    }
+//    return mainWindow;
+    
+    
     UIWindow *mainWindow = nil;
-    if ( @available(iOS 13.0, *) ) {
-        //如果是多场景，可以遍历windows,检查window.isKeyWindow获取
-        NSArray *windows = UIApplication.sharedApplication.windows;
-        for (UIWindow *window in windows) {
-            if (window.isKeyWindow) {
-                mainWindow = window;
-                break;
+    if (@available(iOS 13.0, *)) {
+        for (UIWindowScene *windowScene in UIApplication.sharedApplication.connectedScenes) {
+            if (windowScene.activationState == UISceneActivationStateForegroundActive) {
+                for (UIWindow *window in windowScene.windows) {
+                    if (window.isKeyWindow) {
+                        return window;
+                    }
+                }
             }
         }
-        if (!mainWindow) {
-            mainWindow = windows.firstObject;
-        }
-    } else {
+    }else{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         mainWindow = UIApplication.sharedApplication.keyWindow;
+#pragma clang diagnostic pop
+    }
+    if (!mainWindow) {
+        mainWindow = UIApplication.sharedApplication.windows.firstObject;
     }
     return mainWindow;
 }
