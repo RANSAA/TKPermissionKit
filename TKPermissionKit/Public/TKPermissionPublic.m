@@ -56,20 +56,25 @@
     NSString *systemLanguage = [NSLocale preferredLanguages].firstObject.lowercaseString;
     NSString *path = [self bundlePath];
     NSArray *subPaths = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:nil];
+    subPaths = [subPaths filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject hasSuffix:@".lproj"];
+    }]];
     for (NSString *dirName in subPaths) {
-        if ([dirName hasSuffix:@".lproj"]) {
-            NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
-            NSString *lowerName = [name lowercaseString];
-            if ([lowerName isEqualToString:systemLanguage]) {
-                selectedLanguage = name;
-                break;
-            }
-            if ([lowerName containsString:systemLanguage] || [systemLanguage containsString:lowerName]) {
-                selectedLanguage = name;
-                break;
-            }
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
+        NSString *lowerName = [name lowercaseString];
+        if ([lowerName containsString:systemLanguage] || [systemLanguage containsString:lowerName]) {
+            selectedLanguage = name;
+            break;
         }
     }
+    for (NSString *dirName in subPaths) {
+        NSString *name = [dirName stringByReplacingOccurrencesOfString:@".lproj" withString:@""];
+        NSString *lowerName = [name lowercaseString];
+        if ([lowerName isEqualToString:systemLanguage]) {
+            selectedLanguage = name;
+            break;
+        }
+    }    
     return selectedLanguage;
 }
 
@@ -215,27 +220,13 @@
  */
 + (UIWindow*)TK_keyWindow
 {
-//    UIWindow *mainWindow = nil;
-//    if ( @available(iOS 13.0, *) ) {
-//        //如果是多场景，可以遍历windows,检查window.isKeyWindow获取
-//        NSArray *windows = UIApplication.sharedApplication.windows;
-//        for (UIWindow *window in windows) {
-//            if (window.isKeyWindow) {
-//                mainWindow = window;
-//                break;
-//            }
-//        }
-//        if (!mainWindow) {
-//            mainWindow = windows.firstObject;
-//        }
-//    } else {
-//        mainWindow = UIApplication.sharedApplication.keyWindow;
-//    }
-//    return mainWindow;
-    
-    
     UIWindow *mainWindow = nil;
     if (@available(iOS 13.0, *)) {
+//        for (UIWindow *window in UIApplication.sharedApplication.windows) {
+//            if (window.isKeyWindow) {
+//                return window;
+//            }
+//        }
         for (UIWindowScene *windowScene in UIApplication.sharedApplication.connectedScenes) {
             if (windowScene.activationState == UISceneActivationStateForegroundActive) {
                 for (UIWindow *window in windowScene.windows) {
