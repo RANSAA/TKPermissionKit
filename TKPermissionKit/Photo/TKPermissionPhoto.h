@@ -32,6 +32,16 @@
     [[PHPhotoLibrary sharedPhotoLibrary] presentLimitedLibraryPickerFromViewController:self];
 
 
+ 注意1:
+ 如果在iOS14即更高的版本依旧使用UIImagePickerController(未适配)，请求PHAuthorizationStatusLimited权限，它依旧会响应PHAuthorizationStatusAuthorized。
+ 
+ 
+ 注意2：
+ 在iOS14中直接使用PHPicker访问相册是不需要请求权限的，因为PHPicker是独立的进程，在默认情况下它有内置的隐私，
+ 1. 不需要直接访问用户相册
+ 2. 不会提示访问相册
+ 3. 仅为用户提供可选择的照片和视频
+ 
  **/
 
 
