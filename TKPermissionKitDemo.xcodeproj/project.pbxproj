@@ -626,15 +626,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TKPermissionKitDemo/TKPermissionKitDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit123;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -647,15 +647,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TKPermissionKitDemo/TKPermissionKitDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit123;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

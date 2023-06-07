@@ -186,6 +186,12 @@
             break;
         case 7://推送
         {
+            if (@available(iOS 10.0, *)) {
+                TKPermissionUNAuthorizationOptions options = UNAuthorizationOptionSound;
+                [TKPermissionNotification setAuthorizationOptions:options];
+            } else {
+                // Fallback on earlier versions
+            }
             [TKPermissionNotification authWithAlert:YES completion:^(BOOL isAuth) {
                 if (isAuth) {
                     NSLog(@"推送通知权限获取成功！");

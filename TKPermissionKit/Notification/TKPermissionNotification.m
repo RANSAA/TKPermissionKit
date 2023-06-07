@@ -9,15 +9,30 @@
 #import "TKPermissionNotification.h"
 
 
-
 @implementation TKPermissionNotification
-
 static bool safeLock = NO;//防止连续请求lock
+
+//
+static TKPermissionUNAuthorizationOptions _options;
+static bool isOptions = NO;
+
 
 
 + (void)jumpSetting
 {
     [TKPermissionPublic alertPromptTips:TKPermissionString(@"使用通知时需要您提供权限，去设置！")];
+}
+
+
+/**
+ 自定义UNAuthorizationOptions选项；
+ 如果不设置则使用:UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound
+ 注意:需要在authWithAlert:completion:方法之前设置才有效。
+ */
++ (void)setAuthorizationOptions:(TKPermissionUNAuthorizationOptions)options
+{
+    isOptions = YES;
+    _options = options;
 }
 
 /**
@@ -36,12 +51,12 @@ static bool safeLock = NO;//防止连续请求lock
     if (@available(iOS 10.0, *)) {
         UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
         UNAuthorizationOptions types = UNAuthorizationOptionBadge|UNAuthorizationOptionAlert|UNAuthorizationOptionSound;
+        if(isOptions){
+            types = (UNAuthorizationOptions)_options;
+        }
         [center requestAuthorizationWithOptions:types completionHandler:^(BOOL granted, NSError * _Nullable error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (granted) {
-                    [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
-                        //
-                    }];
                     completion(YES);
                 } else {
                     if (isAlert) {
@@ -56,6 +71,9 @@ static bool safeLock = NO;//防止连续请求lock
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Wdeprecated-declarations"
         UIUserNotificationType types = UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge;
+        if(isOptions){
+            types = (UIUserNotificationType)_options;
+        }
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
         [application registerUserNotificationSettings:settings];
         [application registerForRemoteNotifications];
@@ -64,5 +82,8 @@ static bool safeLock = NO;//防止连续请求lock
     }
 #pragma clang diagnostic pop
 }
+
+
+
 
 @end
