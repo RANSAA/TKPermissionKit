@@ -187,7 +187,7 @@
         case 7://推送
         {
             if (@available(iOS 10.0, *)) {
-                TKPermissionUNAuthorizationOptions options = UNAuthorizationOptionSound;
+                TKPermissionUNAuthorizationOptions options = (TKPermissionUNAuthorizationOptions)UNAuthorizationOptionSound;
                 [TKPermissionNotification setAuthorizationOptions:options];
             } else {
                 // Fallback on earlier versions
