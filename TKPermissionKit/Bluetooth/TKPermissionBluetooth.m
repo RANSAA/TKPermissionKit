@@ -95,7 +95,8 @@ static TKPermissionBluetooth * _shared = nil;
     }
 
     //cancel
-    self.peripheralManager = nil;
+//    self.peripheralManager = nil;
+    [self invalid];
 }
 
 - (void)returnBlock:(BOOL)isAuth
@@ -105,6 +106,13 @@ static TKPermissionBluetooth * _shared = nil;
         block(isAuth);
         safeLock = NO;
     });
+}
+
+- (void)invalid
+{
+    [self.peripheralManager stopAdvertising];
+    //这句会出现:[CoreBluetooth] XPC connection invalid
+    self.peripheralManager = nil;
 }
 
 @end

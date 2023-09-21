@@ -55,7 +55,7 @@
                      @"请求HomeKit权限    ",
                      @"请求文件与文件夹",
                      @"请求AppTrackingTransparency权限",
-                     @"请求Siri权限 （需要打开添加Siri开关）"
+                     @"请求Siri权限 （需要在Capabilities中打开添加Siri开关）"
                      ];
     self.tableView.rowHeight = 55;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -305,6 +305,7 @@
                 [self testAddView];
             }];
         }
+            break;
         case 17:
         {
             [TKPermissionTracking authWithCompletion:^(BOOL isAuth, NSString * _Nonnull idfa) {
