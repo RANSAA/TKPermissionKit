@@ -34,7 +34,7 @@ FOUNDATION_EXPORT const unsigned char TKPermissionKitVersionString[];
 #import "TKPermissionCalendar.h"
 #import "TKPermissionReminder.h"
 #import "TKPermissionContacts.h"
-#import "TKPermissionNetWork.h"
+#import "TKPermissionNetwork.h"
 #import "TKPermissionHealth.h"
 #import "TKPermissionHome.h"
 #import "TKPermissionMotion.h"

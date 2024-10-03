@@ -220,13 +220,13 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
-		04B5C5462350106600284691 /* NetWork */ = {
+		04B5C5462350106600284691 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				04B5C571235077B900284691 /* TKPermissionNetwork.h */,
 				04B5C572235077B900284691 /* TKPermissionNetwork.m */,
 			);
-			path = NetWork;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		04B5C54A2350140500284691 /* Public */ = {
@@ -328,7 +328,7 @@
 				04B5C54023500FFD00284691 /* Media */,
 				04B5C5412350100F00284691 /* Microphone */,
 				044B6D742351722F00F13358 /* Motion */,
-				04B5C5462350106600284691 /* NetWork */,
+				04B5C5462350106600284691 /* Network */,
 				044B6D79235197E900F13358 /* Notification */,
 				04B5C53E23500FD900284691 /* Photo */,
 				04B5C56A2350716500284691 /* Reminder */,

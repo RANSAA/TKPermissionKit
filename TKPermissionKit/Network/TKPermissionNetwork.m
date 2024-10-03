@@ -1,5 +1,5 @@
 //
-//  TKPermissionNetWork.m
+//  TKPermissionNetwork.m
 //  TKPermissionKitDemo
 //
 //  Created by mac on 2019/10/11.
