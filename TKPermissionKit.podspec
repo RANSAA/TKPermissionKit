@@ -7,7 +7,7 @@
 #
 
 name      = "TKPermissionKit"
-version   = "1.2.6"
+version   = "1.2.7"
 homepage  = "https://github.com/RANSAA/TKPermissionKit"
 
 
@@ -40,7 +40,10 @@ spec.public_header_files  = "#{name}/TKPermissionKit.h"
 spec.subspec 'Public' do |ss|
   ss.source_files         = public_source
   ss.public_header_files  = public_header
-  ss.resources            = "#{name}/Public/*.bundle"
+  # ss.resources            = "#{name}/Public/*.bundle"
+  ss.resource_bundles = {
+      spec.name => ["#{name}/Public/*.bundle/*", "#{name}/Public/PrivacyInfo.xcprivacy"]
+  }
   ss.ios.frameworks       = "Foundation", "UIKit"
 end
 
@@ -129,9 +132,9 @@ spec.subspec 'Reminder' do |ss|
   ss.dependency "#{public_base}"
 end
 
-spec.subspec 'NetWork' do |ss|
-  ss.source_files         = "#{name}/NetWork/#{file_source}"
-  ss.public_header_files  = "#{name}/NetWork/#{file_header}"
+spec.subspec 'Network' do |ss|
+  ss.source_files         = "#{name}/Network/#{file_source}"
+  ss.public_header_files  = "#{name}/Network/#{file_header}"
   ss.ios.frameworks       = "CoreTelephony"
   ss.dependency "#{public_base}"
 end

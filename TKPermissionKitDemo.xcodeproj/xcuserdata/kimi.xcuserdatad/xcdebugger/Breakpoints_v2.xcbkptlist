@@ -14,9 +14,9 @@
             filePath = "TKPermissionKitDemo/ListViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-instanceSubView"
             landmarkType = "7">
             <Locations>
                <Location

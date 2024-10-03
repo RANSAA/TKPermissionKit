@@ -22,7 +22,7 @@
 		04B5C56923506E8F00284691 /* TKPermissionCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56823506E8F00284691 /* TKPermissionCalendar.m */; };
 		04B5C56D2350718E00284691 /* TKPermissionReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56C2350718E00284691 /* TKPermissionReminder.m */; };
 		04B5C5702350734C00284691 /* TKPermissionContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C56F2350734C00284691 /* TKPermissionContacts.m */; };
-		04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C572235077B900284691 /* TKPermissionNetWork.m */; };
+		04B5C573235077B900284691 /* TKPermissionNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C572235077B900284691 /* TKPermissionNetwork.m */; };
 		04B5C57723507EBF00284691 /* TKPermissionHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B5C57623507EBF00284691 /* TKPermissionHealth.m */; };
 		04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB356230A4D9B00E86E38 /* AppDelegate.m */; };
 		04CDB35A230A4D9B00E86E38 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB359230A4D9B00E86E38 /* ViewController.m */; };
@@ -74,8 +74,8 @@
 		04B5C56C2350718E00284691 /* TKPermissionReminder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionReminder.m; sourceTree = "<group>"; };
 		04B5C56E2350734C00284691 /* TKPermissionContacts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionContacts.h; sourceTree = "<group>"; };
 		04B5C56F2350734C00284691 /* TKPermissionContacts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionContacts.m; sourceTree = "<group>"; };
-		04B5C571235077B900284691 /* TKPermissionNetWork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionNetWork.h; sourceTree = "<group>"; };
-		04B5C572235077B900284691 /* TKPermissionNetWork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionNetWork.m; sourceTree = "<group>"; };
+		04B5C571235077B900284691 /* TKPermissionNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionNetwork.h; sourceTree = "<group>"; };
+		04B5C572235077B900284691 /* TKPermissionNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionNetwork.m; sourceTree = "<group>"; };
 		04B5C57523507EBF00284691 /* TKPermissionHealth.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionHealth.h; sourceTree = "<group>"; };
 		04B5C57623507EBF00284691 /* TKPermissionHealth.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionHealth.m; sourceTree = "<group>"; };
 		04CDB352230A4D9B00E86E38 /* TKPermissionKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TKPermissionKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,8 +223,8 @@
 		04B5C5462350106600284691 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				04B5C571235077B900284691 /* TKPermissionNetWork.h */,
-				04B5C572235077B900284691 /* TKPermissionNetWork.m */,
+				04B5C571235077B900284691 /* TKPermissionNetwork.h */,
+				04B5C572235077B900284691 /* TKPermissionNetwork.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -315,8 +315,7 @@
 		04CDB36B230A4DF300E86E38 /* TKPermissionKit */ = {
 			isa = PBXGroup;
 			children = (
-				3FC6CD8E26D9596D000A7DC4 /* Siri */,
-				3FC6CD8826D94F6D000A7DC4 /* Tracking */,
+				04B5C54A2350140500284691 /* Public */,
 				04B5C55E2350546600284691 /* Bluetooth */,
 				04B5C5442350105400284691 /* Calendar */,
 				04B5C53F23500FE800284691 /* Camera */,
@@ -332,10 +331,11 @@
 				04B5C5462350106600284691 /* NetWork */,
 				044B6D79235197E900F13358 /* Notification */,
 				04B5C53E23500FD900284691 /* Photo */,
-				04B5C54A2350140500284691 /* Public */,
 				04B5C56A2350716500284691 /* Reminder */,
+				3FC6CD8E26D9596D000A7DC4 /* Siri */,
 				04B5C5432350104600284691 /* Speech */,
 				044B6D7D2351A18200F13358 /* TKPermissionKit.h */,
+				3FC6CD8826D94F6D000A7DC4 /* Tracking */,
 			);
 			path = TKPermissionKit;
 			sourceTree = SOURCE_ROOT;
@@ -474,7 +474,7 @@
 				04B5C5612350548900284691 /* TKPermissionBluetooth.m in Sources */,
 				3FC6CD8B26D94FB2000A7DC4 /* TKPermissionTracking.m in Sources */,
 				04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */,
-				04B5C573235077B900284691 /* TKPermissionNetWork.m in Sources */,
+				04B5C573235077B900284691 /* TKPermissionNetwork.m in Sources */,
 				04CDB365230A4D9C00E86E38 /* main.m in Sources */,
 				04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */,
 				3F722D9E24E43F34005875B7 /* TKPermissionFolders.m in Sources */,
@@ -627,14 +627,14 @@
 				CODE_SIGN_ENTITLEMENTS = TKPermissionKitDemo/TKPermissionKitDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KBHDP222FK;
+				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.test;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -648,14 +648,14 @@
 				CODE_SIGN_ENTITLEMENTS = TKPermissionKitDemo/TKPermissionKitDemo.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KBHDP222FK;
+				DEVELOPMENT_TEAM = 39E8LG3NH3;
 				INFOPLIST_FILE = TKPermissionKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.PermissionKit.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sayaDev.test;
 				PRODUCT_NAME = TKPermissionKit;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

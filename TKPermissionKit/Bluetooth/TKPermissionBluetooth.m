@@ -48,9 +48,17 @@ static TKPermissionBluetooth * _shared = nil;
 + (NSInteger)authorizationCode
 {
     NSInteger code = 0;
-    if (@available(iOS 13.1, *)) {
-        code = [CBManager authorization];
-    } else {
+
+    if (@available(iOS 10.0, *)) {
+        if (@available(iOS 13.1, *)) {
+            code = [CBManager authorization];
+        } else {
+            code = [CBPeripheralManager authorizationStatus];
+            // iOS 11 蓝牙可正常使用 status=0
+            // 注意：未测试
+            if (code == 0) {code = 3;}
+        }
+    }else {
         code = [CBPeripheralManager authorizationStatus];
     }
     return code;

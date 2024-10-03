@@ -49,8 +49,8 @@
                      @"请求日历权限",
                      @"请求通讯录权限 ",
                      @"请求提醒事项权限",
-                     @"请求移动网络权限      ⚠️ 没有作用 \n 可以使用ZYNetworkAccessibility检测",
-                     @"请求健康Health权限 \n⚠️:只能检测\"写入数据\"类别中的type",
+                     @"请求移动网络权限 \n⚠️只能获取蜂窝移动网络权限状态，但是不能请求网络授权\n⚠️如果需要可以使用ZYNetworkAccessibility工具",
+                     @"请求健康Health权限 \n⚠️只能检测\"写入数据\"类别中的type",
                      @"请求运动与健身权限 ",
                      @"请求HomeKit权限    ",
                      @"请求文件与文件夹",
@@ -58,14 +58,30 @@
                      @"请求Siri权限 （需要在Capabilities中打开添加Siri开关）"
                      ];
     self.tableView.rowHeight = 55;
+//    self.tableView.estimatedRowHeight = 55;
+//    self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.aryTitle.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ( indexPath.row == 12){
+        return 88;
+    }
+    if (indexPath.row == 13 ){
+        return 66;
+    }
+    return  55;;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,7 +90,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = self.aryTitle[row];
     return cell;
 }
@@ -251,9 +267,11 @@
         }
             break;
         case 12://移动网络
-        {
-            [TKPermissionNetWork authWithAlert:YES completion:nil];
-            NSLog(@"移动网络。。。");
+        {            
+            NSLog(@"蜂窝移动网络权限状态获取......");
+            [TKPermissionNetwork authCellularStateWithCompletion:^(TKPermissionNetworkCellularState state) {
+                NSLog(@"蜂窝移动网络权限态获取 - state:%ld",state);
+            }];
         }
             break;
 
@@ -343,7 +361,7 @@
     NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLSession *setion = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [setion dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSLog(@"test networing data");
+        NSLog(@"网络请求测试数据获取成功！ Data:%@",data);
     }];
     [task resume];
 }
