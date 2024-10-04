@@ -7,7 +7,7 @@
 #
 
 name      = "TKPermissionKit"
-version   = "1.2.7"
+version   = "1.2.8"
 homepage  = "https://github.com/RANSAA/TKPermissionKit"
 
 
@@ -42,7 +42,14 @@ spec.subspec 'Public' do |ss|
   ss.public_header_files  = public_header
   # ss.resources            = "#{name}/Public/*.bundle"
   ss.resource_bundles = {
-      spec.name => ["#{name}/Public/*.bundle/*", "#{name}/Public/PrivacyInfo.xcprivacy"]
+      # 资源文件
+      'TKPermissionKit' => [     
+          "#{name}/Public/*.bundle/*"
+       ],
+      ## 隐私清单 - 注意:建议与资源文件分别存放在不同的bundle中
+      'TKPermissionKit.Privacy' => [    
+          "#{name}/Public/PrivacyInfo.xcprivacy" 
+       ],
   }
   ss.ios.frameworks       = "Foundation", "UIKit"
 end
