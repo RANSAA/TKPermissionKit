@@ -1,40 +1,44 @@
 //
-//  TKPermissionLocationAlways.h
+//  TKPermissionLocationTemporary.h
 //  TKPermissionKitDemo
 //
-//  Created by mac on 2019/10/11.
-//  Copyright © 2019 mac. All rights reserved.
+//  Created by kimi on 2024/10/5.
+//  Copyright © 2024 mac. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import "TKPermissionPublic.h"
 
-
 NS_ASSUME_NONNULL_BEGIN
 
+
 /**
- 功能：定位始终访问位置权限获取与请求
- 要求：iOS8.0+
- 注意: TKPermissionLocationAlways 与 TKPermissionLocationWhen  二选一使用(权限描述也是2选1)
-
-
-
- 权限描述:
- NSLocationAlwaysUsageDescription                       需要您的同意，才能访问位置信息
- NSLocationAlwaysAndWhenInUseUsageDescription           需要您的同意，才能始终访问位置信息
- NSLocationWhenInUseUsageDescription                    需要您的同意，才能访问位置信息
-
- NSLocationUsageDescription                             需要您的同意，才能访问位置信息        PS:如果是MacOS需要包含该权限描述，iOS8之后不需要该权限描述
-
-
+ 功能：App运行期间临时请求一次准确的位置信息
+ 要求：iOS14.0+
  注意：
- 1. 如果不需要“精准定位”信息即只能获取大致位置信息，比如只能定位到县级位置信息，比如在县城的一个位置获取定位信息，换到县城的另一个位置获取到依然是之前的位置信息。
- 2. App默认一般都需要精准的位置信息，不需要添加其它描述权限。
- 3. 如果App只需要大致位置信息，即info.plist中添加NSLocationDefaultAccuracyReduced值为YES的权限描述，即获取精度较低的位置信息，如下：
-     <key>NSLocationDefaultAccuracyReduced</key>
-     <true/>
+ 1. 临时准确位置信息请求的前提是必须有位置授权权限，例如TKPermissionLocationAlways或TKPermissionLocationWhen权限请求成功之后请求。
+ 2. 临时精准的位置授权认证在App运行期间只会进行一次授权，App重新运行后需要再次授权。
  
-
+ 权限描述：
+ NSLocationTemporaryUsageDescriptionDictionary      说明：临时请求一次精确位置信息需要的权限描述，类型字典。
+    - Key:ExampleUsageDescription                   描述：此应用程序需要准确的定位，以便验证您是否在受支持的地区。
+    - Key:AnotherUsageDescription                   描述：此应用程序需要准确的位置，以便向您显示相关结果。
+ 注意：
+ 1.按照需求类型填写对应的Key与描述。
+ 系统介绍示例：
+ *   <key>NSLocationTemporaryUsageDescriptionDictionary</key>
+ *   <dict>
+ *      <key>ExampleUsageDescription</key>
+ *      <string>This app needs accurate location so it can verify that you're in a supported region.</string>
+ *      <key>AnotherUsageDescription</key>
+ *      <string>This app needs accurate location so it can show you relevant results.</string>
+ *   </dict>
+ 2. 要想请求一次精准位置权限，需要App使用获取位置信息精度较低的授权描述(只能获取大致位置信息，例如只能定位在所在县城)，即需要如下配置：
+ <key>NSLocationDefaultAccuracyReduced</key>
+ <true/>
+ 
+ 
+ 
  
  
  
@@ -54,29 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
      <true/>
 
   这样设置之后，即使用户想要为该 App 开启精确定位权限，也无法开启。
-
-
  
- **/
+ 
+ */
 
-
-
-@interface TKPermissionLocationAlways : NSObject
-
-
-/**
- 请求始终访问位置权限
- isAlert: 请求权限时，用户拒绝授予权限时。是否弹出alert进行手动设置权限 YES:弹出alert
- isAuth:  回调，用户是否申请权限成功！
- **/
-+ (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion;
-
-
-/**
- 查询是否获取了始终访问位置权限
- PS:只有选择了"始终"，才会返回YES
- **/
-+ (BOOL)checkAuth;
+@interface TKPermissionLocationTemporary : NSObject
 
 @end
 

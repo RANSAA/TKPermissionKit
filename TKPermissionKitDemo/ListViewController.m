@@ -29,7 +29,7 @@
     [self instanceSubView];
 
 
-    [self get];
+    [self testNetworkLine];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
 
@@ -356,7 +356,7 @@
 
 
 
-- (void)get
+- (void)testNetworkLine
 {
     NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLSession *setion = [NSURLSession sharedSession];

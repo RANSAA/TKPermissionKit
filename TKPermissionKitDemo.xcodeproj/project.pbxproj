@@ -31,6 +31,7 @@
 		04CDB362230A4D9C00E86E38 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04CDB360230A4D9C00E86E38 /* LaunchScreen.storyboard */; };
 		04CDB365230A4D9C00E86E38 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB364230A4D9C00E86E38 /* main.m */; };
 		04CDB374230A526600E86E38 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CDB373230A526600E86E38 /* ListViewController.m */; };
+		3F0ADA282CB1431A0023CEF8 /* TKPermissionLocationTemporary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F0ADA272CB1431A0023CEF8 /* TKPermissionLocationTemporary.m */; };
 		3F722D9E24E43F34005875B7 /* TKPermissionFolders.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F722D9D24E43F34005875B7 /* TKPermissionFolders.m */; };
 		3FC6CD8B26D94FB2000A7DC4 /* TKPermissionTracking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6CD8A26D94FB2000A7DC4 /* TKPermissionTracking.m */; };
 		3FC6CD9126D95986000A7DC4 /* TKPermissionSiri.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC6CD9026D95986000A7DC4 /* TKPermissionSiri.m */; };
@@ -88,6 +89,8 @@
 		04CDB364230A4D9C00E86E38 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		04CDB372230A526600E86E38 /* ListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		04CDB373230A526600E86E38 /* ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		3F0ADA262CB1431A0023CEF8 /* TKPermissionLocationTemporary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionLocationTemporary.h; sourceTree = "<group>"; };
+		3F0ADA272CB1431A0023CEF8 /* TKPermissionLocationTemporary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionLocationTemporary.m; sourceTree = "<group>"; };
 		3F722D9C24E43F34005875B7 /* TKPermissionFolders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionFolders.h; sourceTree = "<group>"; };
 		3F722D9D24E43F34005875B7 /* TKPermissionFolders.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKPermissionFolders.m; sourceTree = "<group>"; };
 		3FC6CD8926D94FB2000A7DC4 /* TKPermissionTracking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKPermissionTracking.h; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 				044B6D7023516B6C00F13358 /* Home */,
 				04B5C5572350292500284691 /* LocationAlways */,
 				04B5C5422350102600284691 /* LocationWhen */,
+				3F0ADA252CB142D10023CEF8 /* LocationTemporary */,
 				04B5C54023500FFD00284691 /* Media */,
 				04B5C5412350100F00284691 /* Microphone */,
 				044B6D742351722F00F13358 /* Motion */,
@@ -339,6 +343,15 @@
 			);
 			path = TKPermissionKit;
 			sourceTree = SOURCE_ROOT;
+		};
+		3F0ADA252CB142D10023CEF8 /* LocationTemporary */ = {
+			isa = PBXGroup;
+			children = (
+				3F0ADA262CB1431A0023CEF8 /* TKPermissionLocationTemporary.h */,
+				3F0ADA272CB1431A0023CEF8 /* TKPermissionLocationTemporary.m */,
+			);
+			path = LocationTemporary;
+			sourceTree = "<group>";
 		};
 		3F722D9B24E43D31005875B7 /* FileAndFolders */ = {
 			isa = PBXGroup;
@@ -474,6 +487,7 @@
 				04B5C5612350548900284691 /* TKPermissionBluetooth.m in Sources */,
 				3FC6CD8B26D94FB2000A7DC4 /* TKPermissionTracking.m in Sources */,
 				04B5C5642350694300284691 /* TKPermissionSpeech.m in Sources */,
+				3F0ADA282CB1431A0023CEF8 /* TKPermissionLocationTemporary.m in Sources */,
 				04B5C573235077B900284691 /* TKPermissionNetwork.m in Sources */,
 				04CDB365230A4D9C00E86E38 /* main.m in Sources */,
 				04CDB357230A4D9B00E86E38 /* AppDelegate.m in Sources */,

@@ -75,6 +75,7 @@ static TKPermissionLocationAlways * _shared = nil;
 + (void)authWithAlert:(BOOL)isAlert completion:(void(^)(BOOL isAuth))completion
 {
     if (safeLock) {
+        NSLog(@"TKPermissionLocationAlways权限请求任务未完成，不能申请新的请求任务......");
         return;
     }
     safeLock = YES;
@@ -82,14 +83,30 @@ static TKPermissionLocationAlways * _shared = nil;
     TKPermissionLocationAlways *obj = self.shared;
     obj.block = completion;
     obj.isAlert = isAlert;
-    if ([CLLocationManager locationServicesEnabled]) {
-        obj.locationManager = [[CLLocationManager alloc]init];
-        obj.locationManager.delegate = obj;
-        [obj.locationManager requestAlwaysAuthorization];
-    }else{
-        [obj alertAction];
-        [obj returnBlock:NO];
-    }
+    
+//    if ([CLLocationManager locationServicesEnabled]) {
+//        obj.locationManager = [[CLLocationManager alloc]init];
+//        obj.locationManager.delegate = obj;
+//        [obj.locationManager requestAlwaysAuthorization];
+//    }else{
+//        [obj alertAction];
+//        [obj returnBlock:NO];
+//    }
+    
+    //将locationServicesEnabled方法放入子线程中请求
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        BOOL isEnabled = [CLLocationManager locationServicesEnabled];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(isEnabled){
+                obj.locationManager = [[CLLocationManager alloc]init];
+                obj.locationManager.delegate = obj;
+                [obj.locationManager requestAlwaysAuthorization];
+            }else{
+                [obj alertAction];
+                [obj returnBlock:NO];
+            }
+        });
+    });
 }
 
 

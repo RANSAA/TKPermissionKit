@@ -19,10 +19,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 
  权限描述:
- NSLocationWhenInUseUsageDescription           需要您的同意，才能访问位置信息
+ NSLocationWhenInUseUsageDescription            需要您的同意，才能访问位置信息
 
- NSLocationUsageDescription     需要您的同意，才能访问位置信息      PS:如果时MacOS需要包含该权限描述，iOS8之后不需要该权限描述
+ NSLocationUsageDescription                     需要您的同意，才能访问位置信息      PS:如果是MacOS需要包含该权限描述，iOS8之后不需要该权限描述
 
+ 注意：
+ 1. 如果不需要“精准定位”信息即只能获取大致位置信息，比如只能定位到县级位置信息，比如在县城的一个位置获取定位信息，换到县城的另一个位置获取到依然是之前的位置信息。
+ 2. App默认一般都需要精准的位置信息，不需要添加其它描述权限。
+ 3. 如果App只需要大致位置信息，即info.plist中添加NSLocationDefaultAccuracyReduced值为YES的权限描述，即获取精度较低的位置信息，如下：
+     <key>NSLocationDefaultAccuracyReduced</key>
+     <true/>
+ 
 
 
 
